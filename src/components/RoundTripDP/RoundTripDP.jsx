@@ -22,6 +22,8 @@ const RoundTripDP = ({ defStartDate, defEndDate }) => {
     setEndDate(date);
   };
 
+  const today = new Date(); // Get today's date
+
   return (
     <>
       <DatePicker
@@ -32,6 +34,7 @@ const RoundTripDP = ({ defStartDate, defEndDate }) => {
         endDate={endDate}
         dateFormat="dd MMM, EEE, yyyy" // Internal parsing
         customInput={<CustomInput value={customDateFormat(startDate)} />}
+        minDate={today} // Disable dates before today for startDate
       />
       <DatePicker
         selected={endDate}
@@ -39,7 +42,7 @@ const RoundTripDP = ({ defStartDate, defEndDate }) => {
         selectsEnd
         startDate={startDate}
         endDate={endDate}
-        minDate={startDate}
+        minDate={startDate || today} // Ensure endDate is after startDate and today's date
         dateFormat="dd MMM, EEE, yyyy"
         customInput={<CustomInput value={customDateFormat(endDate)} />} // Leave empty if null
       />

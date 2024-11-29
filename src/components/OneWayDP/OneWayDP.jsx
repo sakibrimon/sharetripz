@@ -11,7 +11,8 @@ const OneWayDP = ({ defStartDate }) => {
 
     // Custom date format: "29 Nov, Fri, 2024"
     const customDateFormat = (date) => format(date, "dd MMM, EEE, yyyy"); // Ensure correct display format
-    //
+
+    const today = new Date(); // Get today's date
 
     return (
         <DatePicker
@@ -19,6 +20,7 @@ const OneWayDP = ({ defStartDate }) => {
             onChange={(date) => setStartDate(date)}
             dateFormat="dd MMM, EEE, yyyy" // Custom format: e.g., 29 Nov, Fri, 2024
             customInput={<CustomInput value={customDateFormat(startDate)} />}
+            minDate={today} // Disable dates before today
         />
     );
 };
