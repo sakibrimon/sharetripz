@@ -30,7 +30,7 @@ const Flights = ({ travelType, defOrigin0, defDestination0, defStartDate0, defOr
         setFlights((prevFlights) => {
             const lastFlight = prevFlights[prevFlights.length - 1];
             const defOrigin = lastFlight.props.defDestination; // Set defOrigin to the last flight's defDestination
-            const defDestination = airports[prevFlights.length - 1]?.iata_code || ""; // Get the iata_code based on the length
+            const defDestination = airports[prevFlights.length + 1]?.iata_code || ""; // Get the iata_code based on the length
             const newFlight = (
                 <Flight
                     key={prevFlights.length}

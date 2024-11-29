@@ -17,6 +17,13 @@ const AutocompleteSearch = ({ defValue }) => {
     { iata_code: "BKK", name: "Suvarnabhumi Airport" },
     { iata_code: "KUL", name: "Kuala Lumpur International Airport" },
     { iata_code: "CGP", name: "Shah Amanat International Airport" },
+    { iata_code: "LHR", name: "Heathrow Airport" },
+    { iata_code: "DXB", name: "Dubai International Airport" },
+    { iata_code: "SYD", name: "Sydney Kingsford Smith Airport" },
+    { iata_code: "HND", name: "Tokyo Haneda Airport" },
+    { iata_code: "LAX", name: "Los Angeles International Airport" },
+    { iata_code: "ATL", name: "Hartsfield-Jackson Atlanta Airport" },
+    { iata_code: "FRA", name: "Frankfurt Airport" }
   ];
   airports = useLoaderData();
 
