@@ -1,0 +1,132 @@
+[
+    {
+        "name": "Hazrat Shahjalal International Airport",
+        "iata_code": "DAC",
+        "icao_code": "VGHS",
+        "city": "Dhaka",
+        "country": "Bangladesh",
+        "latitude": 23.8494,
+        "longitude": 90.3984,
+        "timezone": "Asia/Dhaka"
+    },
+    {
+        "name": "Cox's Bazar Airport",
+        "iata_code": "CXB",
+        "icao_code": "VGCB",
+        "city": "Cox's Bazar",
+        "country": "Bangladesh",
+        "latitude": 21.4522,
+        "longitude": 91.9639,
+        "timezone": "Asia/Dhaka"
+    },
+    {
+        "name": "John F. Kennedy International Airport",
+        "iata_code": "JFK",
+        "icao_code": "KJFK",
+        "city": "New York",
+        "country": "United States",
+        "latitude": 40.6413,
+        "longitude": -73.7781,
+        "timezone": "America/New_York"
+    },
+    {
+        "name": "Suvarnabhumi Airport",
+        "iata_code": "BKK",
+        "icao_code": "VTBS",
+        "city": "Bangkok",
+        "country": "Thailand",
+        "latitude": 13.6923,
+        "longitude": 100.752,
+        "timezone": "Asia/Bangkok"
+    },
+    {
+        "name": "Kuala Lumpur International Airport",
+        "iata_code": "KUL",
+        "icao_code": "WMKK",
+        "city": "Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 2.7456,
+        "longitude": 101.7099,
+        "timezone": "Asia/Kuala_Lumpur"
+    },
+    {
+        "name": "Shah Amanat International Airport",
+        "iata_code": "CGP",
+        "icao_code": "VGEG",
+        "city": "Chattogram",
+        "country": "Bangladesh",
+        "latitude": 22.2496,
+        "longitude": 91.8133,
+        "timezone": "Asia/Dhaka"
+    },
+    {
+        "name": "Heathrow Airport",
+        "iata_code": "LHR",
+        "icao_code": "EGLL",
+        "city": "London",
+        "country": "United Kingdom",
+        "latitude": 51.4700,
+        "longitude": -0.4543,
+        "timezone": "Europe/London"
+    },
+    {
+        "name": "Dubai International Airport",
+        "iata_code": "DXB",
+        "icao_code": "OMDB",
+        "city": "Dubai",
+        "country": "United Arab Emirates",
+        "latitude": 25.2532,
+        "longitude": 55.3657,
+        "timezone": "Asia/Dubai"
+    },
+    {
+        "name": "Sydney Kingsford Smith Airport",
+        "iata_code": "SYD",
+        "icao_code": "YSSY",
+        "city": "Sydney",
+        "country": "Australia",
+        "latitude": -33.9399,
+        "longitude": 151.1753,
+        "timezone": "Australia/Sydney"
+    },
+    {
+        "name": "Tokyo Haneda Airport",
+        "iata_code": "HND",
+        "icao_code": "RJTT",
+        "city": "Tokyo",
+        "country": "Japan",
+        "latitude": 35.5494,
+        "longitude": 139.7798,
+        "timezone": "Asia/Tokyo"
+    },
+    {
+        "name": "Los Angeles International Airport",
+        "iata_code": "LAX",
+        "icao_code": "KLAX",
+        "city": "Los Angeles",
+        "country": "United States",
+        "latitude": 33.9416,
+        "longitude": -118.4085,
+        "timezone": "America/Los_Angeles"
+    },
+    {
+        "name": "Hartsfield-Jackson Atlanta International Airport",
+        "iata_code": "ATL",
+        "icao_code": "KATL",
+        "city": "Atlanta",
+        "country": "United States",
+        "latitude": 33.6407,
+        "longitude": -84.4277,
+        "timezone": "America/New_York"
+    },
+    {
+        "name": "Frankfurt am Main Airport",
+        "iata_code": "FRA",
+        "icao_code": "EDDF",
+        "city": "Frankfurt",
+        "country": "Germany",
+        "latitude": 50.0379,
+        "longitude": 8.5622,
+        "timezone": "Europe/Berlin"
+    }
+]

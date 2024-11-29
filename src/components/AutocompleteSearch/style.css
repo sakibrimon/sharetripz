@@ -1,0 +1,68 @@
+/* Autocomplete container */
+.autocomplete-container {
+  position: relative;
+  with: 100%; /* Ensure the container takes up full width */
+}
+
+/* Suggestions container */
+.suggestions-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  max-height: 200px; /* Limit height for long lists */
+  overflow-y: auto; /* Allow scrolling */
+}
+
+/* Suggestion item */
+.suggestion {
+  padding: 10px;
+  cursor: pointer;
+  display: block; /* Ensure each suggestion is a block-level element */
+  width: 100%; /* Ensure it takes the full width of the container */
+  white-space: nowrap; /* Prevent wrapping of the text */
+  overflow: hidden; /* Hide any overflowed text */
+  text-overflow: ellipsis; /* Show ellipsis when text is truncated */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Suggestion with ellipsis when text is more than 10 characters */
+.suggestion.ellipsis {
+  max-width: 200px; /* You can adjust this as per your layout */
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Hover and highlighted suggestion */
+.suggestion:hover,
+.suggestion-highlighted {
+  background-color: #f0f0f0;
+}
+
+/* Input field styling */
+.autocomplete-input {
+  width: 100%; /* Ensure it spans the full width */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 4px; /* Rounded corners for better aesthetics */
+  box-sizing: border-box;
+}
+
+/* Focused input field */
+.autocomplete-input:focus {
+  border-color: #007BFF; /* Highlight border on focus */
+  outline: none; /* Remove default focus outline */
+}
+
+/* Accessibility and consistent focus outline */
+.suggestion-highlighted {
+  background-color: #e0e0e0; /* Slightly darker for better visibility */
+}
