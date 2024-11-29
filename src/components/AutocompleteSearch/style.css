@@ -1,7 +1,8 @@
 /* Autocomplete container */
 .autocomplete-container {
   position: relative;
-  with: 100%; /* Ensure the container takes up full width */
+  /* Ensure the container takes up full width */
+  /* width: 100%;  */
 }
 
 /* Suggestions container */
