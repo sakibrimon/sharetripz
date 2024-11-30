@@ -32,7 +32,7 @@ const Nav = () => {
                         <li><a>Promotions</a></li>
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">ShareTripz</a>
+                <a className="btn btn-ghost text-xl" href="/">ShareTripz</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
