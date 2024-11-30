@@ -2,7 +2,7 @@
 .autocomplete-container {
   position: relative;
   /* Ensure the container takes up full width */
-  /* width: 100%;  */
+  width: 100%; 
 }
 
 /* Suggestions container */
@@ -10,10 +10,10 @@
   position: absolute;
   top: 100%;
   left: 0;
-  width: 100%;
+  width: 100%; /* Ensure suggestions dropdown matches input width */
   background-color: #fff;
-  border: 1px solid #ccc;
-  border-top: none;
+  /* border: 1px solid #ccc; */
+  /* border-top: none; */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 10;
   max-height: 200px; /* Limit height for long lists */
@@ -54,7 +54,7 @@
   font-size: 16px;
   border: 1px solid #ccc; /* Add border */
   border-radius: 4px; /* Rounded corners for better aesthetics */
-  box-sizing: border-box;
+  box-sizing: border-box; /* Include padding and border in the element's width */
 }
 
 /* Focused input field */

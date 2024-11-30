@@ -59,10 +59,6 @@ const SearchCard = () => {
         return travelers.adults + travelers.children + travelers.kids + travelers.infants;
     };
 
-    const handleSpecialView = () => {
-
-    }
-
     return (
         <div className="mt-8 card bg-base-100 w-96# shadow-xl">
             <div className="card-body">
@@ -74,8 +70,8 @@ const SearchCard = () => {
                     <div className="px-5 py-1 border-b-2 dark:border-gray-300 w-full">&nbsp;</div>
                 </div>
 
-                <div className="flex justify-between items-end">
-                    <div className="mt-5 flex gap-2">
+                <div className="mt-5 flex flex-col gap-3 lg:gap-0 lg:flex-row lg:justify-between lg:items-end">
+                    <div className="flex gap-2">
                         <label className="btn btn-xs lg:btn-sm cursor-pointer flex items-center gap-2">
                             <input type="radio"
                                 name="radio-1"
@@ -108,11 +104,11 @@ const SearchCard = () => {
 
                     <div>
                         {/* Traveler Dropdown */}
-                        <div className="dropdown hidden lg:inline-block">
-                            <div tabIndex={0} role="button" className="btn btn-sm w-[150px] m-1 flex items-center">
+                        <div className="dropdown">
+                            <div tabIndex={0} role="button" className="btn btn-xs lg:btn-sm m-1 flex items-center">
                                 <span>{getTotalTravelers()} Traveler{getTotalTravelers() > 1 ? "s" : ""}</span> <MdOutlineKeyboardArrowDown />
                             </div>
-                            <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-[350px] p-2 shadow">
+                            <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-[310px] p-2 shadow">
                                 {["adults", "children", "kids", "infants"].map((type) => (
                                     <li key={type} className="flex flex-row justify-between items-center">
                                         <span>
@@ -132,8 +128,8 @@ const SearchCard = () => {
                         </div>
 
                         {/* Ticket Class Dropdown */}
-                        <div className="dropdown hidden lg:inline-block">
-                            <div tabIndex={0} role="button" className="btn btn-sm w-[200px] m-1 flex items-center">
+                        <div className="dropdown">
+                            <div tabIndex={0} role="button" className="btn btn-xs lg:btn-sm m-1 flex items-center">
                                 <span>{ticketClass}</span> <MdOutlineKeyboardArrowDown />
                             </div>
                             <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
@@ -160,15 +156,7 @@ const SearchCard = () => {
                 ) : (
                     <Flight travelType={travelType} defOrigin='DAC' defDestination='CXB' defStartDate={tomorrow} defEndDate={dayAfterDayAfterTomorrow} />
                 )}
-                <button className="mt-4 btn btn-block flex justify-between items-center lg:hidden" onClick={handleSpecialView}>
-                    <span>
-                        {getTotalTravelers()} Traveler{getTotalTravelers() > 1 ? "s" : ""}
-                    </span>
-                    <span>
-                        {ticketClass}
-                    </span>
-                </button>
-                <button className="mt-4 btn btn-warning">
+                <button className="mt-5 btn btn-warning">
                     <span className="flex justify-center items-center gap-2 font-bold">
                         <IoIosSearch className="text-2xl" />
                         <span>Search Flight</span>
