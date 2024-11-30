@@ -26,7 +26,7 @@ const RoundTripDP = ({ defStartDate, defEndDate }) => {
   const today = new Date(); // Get today's date
 
   return (
-    <>
+    <div className="mt-4 lg:mt-0 space-x-5 flex">
       <DatePicker
         selected={startDate}
         onChange={handleStartDateChange}
@@ -47,15 +47,16 @@ const RoundTripDP = ({ defStartDate, defEndDate }) => {
         dateFormat="dd MMM, EEE, yyyy"
         customInput={<CustomInput value={customDateFormat(endDate)} />} // Leave empty if null
       />
-    </>
+    </div>
   );
 };
 
-const CustomInput = ({ value, onClick }) => (
+const CustomInput = ({ value, onClick, onFocus }) => (
   <input
     className="custom-date-input"
     value={value}
     onClick={onClick}
+    onFocus={onFocus}
     readOnly
     style={{
       width: "100%",
@@ -76,6 +77,7 @@ RoundTripDP.propTypes = {
 CustomInput.propTypes = {
   value: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  onFocus: PropTypes.func.isRequired,
 };
 
 export default RoundTripDP;

@@ -4,6 +4,7 @@ import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 import Flights from "../Flights/Flights";
 import Flight from "../Flight/Flight";
 import { addDays } from "date-fns";
+import { IoIosSearch } from "react-icons/io";
 
 const SearchCard = () => {
     const tomorrow = addDays(new Date(), 1); // Calculate tomorrow
@@ -58,6 +59,10 @@ const SearchCard = () => {
         return travelers.adults + travelers.children + travelers.kids + travelers.infants;
     };
 
+    const handleSpecialView = () => {
+
+    }
+
     return (
         <div className="mt-8 card bg-base-100 w-96# shadow-xl">
             <div className="card-body">
@@ -103,7 +108,7 @@ const SearchCard = () => {
 
                     <div>
                         {/* Traveler Dropdown */}
-                        <div className="dropdown">
+                        <div className="dropdown hidden lg:inline-block">
                             <div tabIndex={0} role="button" className="btn btn-sm w-[150px] m-1 flex items-center">
                                 <span>{getTotalTravelers()} Traveler{getTotalTravelers() > 1 ? "s" : ""}</span> <MdOutlineKeyboardArrowDown />
                             </div>
@@ -127,7 +132,7 @@ const SearchCard = () => {
                         </div>
 
                         {/* Ticket Class Dropdown */}
-                        <div className="dropdown">
+                        <div className="dropdown hidden lg:inline-block">
                             <div tabIndex={0} role="button" className="btn btn-sm w-[200px] m-1 flex items-center">
                                 <span>{ticketClass}</span> <MdOutlineKeyboardArrowDown />
                             </div>
@@ -155,6 +160,20 @@ const SearchCard = () => {
                 ) : (
                     <Flight travelType={travelType} defOrigin='DAC' defDestination='CXB' defStartDate={tomorrow} defEndDate={dayAfterDayAfterTomorrow} />
                 )}
+                <button className="mt-4 btn btn-block flex justify-between items-center lg:hidden" onClick={handleSpecialView}>
+                    <span>
+                        {getTotalTravelers()} Traveler{getTotalTravelers() > 1 ? "s" : ""}
+                    </span>
+                    <span>
+                        {ticketClass}
+                    </span>
+                </button>
+                <button className="mt-4 btn btn-warning">
+                    <span className="flex justify-center items-center gap-2 font-bold">
+                        <IoIosSearch className="text-2xl" />
+                        <span>Search Flight</span>
+                    </span>
+                </button>
 
                 <div className="mt-5 flex gap-5">
                     <label className="cursor-pointer flex items-center gap-2">

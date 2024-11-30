@@ -3,10 +3,9 @@ import Destination from "../Destination/Destination";
 import Origin from "../Origin/Origin";
 import RoundTripDP from "../RoundTripDP/RoundTripDP";
 import OneWayDP from "../OneWayDP/OneWayDP";
-import { IoIosSearch } from "react-icons/io";
 import { useState } from "react";
 import PropTypes from "prop-types";
-
+import { RiArrowUpDownLine } from "react-icons/ri";
 
 const Flight = ({ travelType, defOrigin, defDestination, defStartDate, defEndDate }) => {
     const [ports, setPorts] = useState({
@@ -22,10 +21,11 @@ const Flight = ({ travelType, defOrigin, defDestination, defStartDate, defEndDat
     };
 
     return (
-        <div className="mt-5 flex gap-5 items-center">
+        <div className="mt-5 lg:flex gap-5 items-center">
             <>
                 {ports.origin}
-                <FaArrowRightArrowLeft className="cursor-pointer" onClick={swapPorts} />
+                <FaArrowRightArrowLeft className="cursor-pointer hidden lg:inline" onClick={swapPorts} />
+                <RiArrowUpDownLine className="ml-auto cursor-pointer lg:hidden" onClick={swapPorts} />
                 {ports.destination}
             </>
             {travelType === "Round Trip" ? (
@@ -33,15 +33,11 @@ const Flight = ({ travelType, defOrigin, defDestination, defStartDate, defEndDat
             ) : (
                 <OneWayDP defStartDate={defStartDate} />
             )}
-            {travelType !== "Multi City" &&
-            <button className="btn">
-                <IoIosSearch className="text-2xl" />
-            </button>}
         </div>
     );
 };
 
-Flight.propTypes ={
+Flight.propTypes = {
     travelType: PropTypes.string.isRequired,
     defOrigin: PropTypes.string.isRequired,
     defDestination: PropTypes.string.isRequired,

@@ -16,21 +16,24 @@ const OneWayDP = ({ defStartDate }) => {
     const today = new Date(); // Get today's date
 
     return (
-        <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            dateFormat="dd MMM, EEE, yyyy" // Custom format: e.g., 29 Nov, Fri, 2024
-            customInput={<CustomInput value={customDateFormat(startDate)} />}
-            minDate={today} // Disable dates before today
-        />
+        <div className="mt-4 lg:mt-0">
+            <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                dateFormat="dd MMM, EEE, yyyy" // Custom format: e.g., 29 Nov, Fri, 2024
+                customInput={<CustomInput value={customDateFormat(startDate)} />}
+                minDate={today} // Disable dates before today
+            />
+        </div>
     );
 };
 
-const CustomInput = ({ value, onClick }) => (
+const CustomInput = ({ value, onClick, onFocus }) => (
     <input
         className="custom-date-input"
         value={value}
         onClick={onClick}
+        onFocus={onFocus}
         readOnly
         style={{
             width: "100%",
@@ -52,6 +55,7 @@ OneWayDP.propTypes = {
 CustomInput.propTypes = {
     value: PropTypes.string.isRequired, // Ensures value is a string
     onClick: PropTypes.func.isRequired, // Ensures onClick is a function
+    onFocus: PropTypes.func.isRequired,
 };
 
 export default OneWayDP;

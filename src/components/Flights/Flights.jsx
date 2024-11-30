@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Flight from "../Flight/Flight";
-import { IoIosSearch } from "react-icons/io";
 import { FaPlus } from "react-icons/fa6";
 import { MdCancel } from "react-icons/md";
 import { useLoaderData } from "react-router";
 import { addDays } from "date-fns";
 import PropTypes from "prop-types";
+import { getOrdinalSuffix } from "../../utils";
 
 const Flights = ({ travelType, defOrigin0, defDestination0, defStartDate0, defOrigin1, defDestination1, defStartDate1 }) => {
     const [flights, setFlights] = useState([
@@ -55,12 +55,25 @@ const Flights = ({ travelType, defOrigin0, defDestination0, defStartDate0, defOr
             {/* Render Flights */}
             {flights.map((flight, index) => (
                 <div key={flight.key} className="relative">
+                    <div className="mt-5 flex justify-between items-center lg:hidden">
+                        <button className="btn btn-xs btn-info">{getOrdinalSuffix(index + 1)} Flight</button>
+
+                        {/* Show Remove Button for Flights Beyond the First Two - on Smaller Screens */}
+                        {index >= 2 && (
+                            <button onClick={() => handleRemoveFlight(index)}
+                                title="Remove Flight"
+                            >
+                                <MdCancel className="text-xl" />
+                            </button>
+                        )}
+                    </div>
+
                     {flight}
 
-                    {/* Show Remove Button for Flights Beyond the First Two */}
+                    {/* Show Remove Button for Flights Beyond the First Two - on Larger Screens */}
                     {index >= 2 && (
                         <button
-                            className="absolute top-1/2 left-1/2# right-0 transform -translate-x-1/2 -translate-y-1/2"
+                            className="absolute top-1/2 left-1/2# right-0 transform -translate-x-1/2 -translate-y-1/2 hidden lg:inline"
                             onClick={() => handleRemoveFlight(index)}
                             title="Remove Flight"
                         >
@@ -70,26 +83,19 @@ const Flights = ({ travelType, defOrigin0, defDestination0, defStartDate0, defOr
                 </div>
             ))}
 
-            {/* Buttons */}
-            <div className="mt-5 flex justify-between items-center">
-                <button
-                    className="btn btn-ghost flex gap-2 items-center disabled:opacity-50 disabled:cursor-not-allowed"
-                    onClick={handleAddFlights}
-                    disabled={flights.length >= 5} // Disable if flights are already 5
-                >
-                    <FaPlus />
-                    <span>Add more flights</span>
-                </button>
-                <button className="btn flex items-center">
-                    <IoIosSearch className="text-2xl" />
-                    <span>Search</span>
-                </button>
-            </div>
+            <button
+                className="mt-5 btn btn-outline btn-info lg:btn-ghost flex gap-2 items-center disabled:opacity-50 disabled:cursor-not-allowed"
+                onClick={handleAddFlights}
+                disabled={flights.length >= 5} // Disable if flights are already 5
+            >
+                <FaPlus />
+                <span>Add more flights</span>
+            </button>
         </div>
     );
 };
 
-Flights.propTypes ={
+Flights.propTypes = {
     defOrigin0: PropTypes.string.isRequired,
     travelType: PropTypes.string.isRequired,
     defDestination0: PropTypes.string.isRequired,
