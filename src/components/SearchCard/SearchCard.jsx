@@ -76,30 +76,30 @@ const SearchCard = () => {
 
                 <div className="flex justify-between items-end">
                     <div className="mt-5 flex gap-2">
-                        <label className="btn btn-sm cursor-pointer flex items-center gap-2">
+                        <label className="btn btn-xs lg:btn-sm cursor-pointer flex items-center gap-2">
                             <input type="radio"
                                 name="radio-1"
                                 value="One Way"
-                                className="radio radio-sm"
+                                className="radio radio-xs lg:radio-sm"
                                 onChange={(e) => setTravelType(e.target.value)}
                             />
                             <span>One Way</span>
                         </label>
-                        <label className="btn btn-sm cursor-pointer flex items-center gap-2">
+                        <label className="btn btn-xs lg:btn-sm cursor-pointer flex items-center gap-2">
                             <input type="radio"
                                 name="radio-1"
                                 value="Round Trip"
-                                className="radio radio-sm"
+                                className="radio radio-xs lg:radio-sm"
                                 defaultChecked
                                 onChange={(e) => setTravelType(e.target.value)}
                             />
                             <span>Round Trip</span>
                         </label>
-                        <label className="btn btn-sm cursor-pointer flex items-center gap-2">
+                        <label className="btn btn-xs lg:btn-sm cursor-pointer flex items-center gap-2">
                             <input type="radio"
                                 name="radio-1"
                                 value="Multi City"
-                                className="radio radio-sm"
+                                className="radio radio-xs lg:radio-sm"
                                 onChange={(e) => setTravelType(e.target.value)}
                             />
                             <span>Multi City</span>
