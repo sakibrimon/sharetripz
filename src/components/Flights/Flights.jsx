@@ -5,6 +5,7 @@ import { FaPlus } from "react-icons/fa6";
 import { MdCancel } from "react-icons/md";
 import { useLoaderData } from "react-router";
 import { addDays } from "date-fns";
+import PropTypes from "prop-types";
 
 const Flights = ({ travelType, defOrigin0, defDestination0, defStartDate0, defOrigin1, defDestination1, defStartDate1 }) => {
     const [flights, setFlights] = useState([
@@ -87,5 +88,16 @@ const Flights = ({ travelType, defOrigin0, defDestination0, defStartDate0, defOr
         </div>
     );
 };
+
+Flights.propTypes ={
+    defOrigin0: PropTypes.string.isRequired,
+    travelType: PropTypes.string.isRequired,
+    defDestination0: PropTypes.string.isRequired,
+    defStartDate0: PropTypes.instanceOf(Date).isRequired,
+    defOrigin1: PropTypes.string.isRequired,
+    defDestination1: PropTypes.string.isRequired,
+    defStartDate1: PropTypes.instanceOf(Date).isRequired,
+    defEndDate1: PropTypes.instanceOf(Date).isRequired,
+}
 
 export default Flights;

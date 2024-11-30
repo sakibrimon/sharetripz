@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 
 import "./style.css"; // Adjust the path based on your file structure
+import PropTypes from "prop-types";
 
 const OneWayDP = ({ defStartDate }) => {
     const [startDate, setStartDate] = useState(defStartDate);
@@ -41,5 +42,16 @@ const CustomInput = ({ value, onClick }) => (
         }}
     />
 );
+
+// Add PropTypes validation for OneWayDP
+OneWayDP.propTypes = {
+    defStartDate: PropTypes.instanceOf(Date).isRequired, // Ensures defStartDate is a Date object
+};
+
+// Add PropTypes validation for CustomInput
+CustomInput.propTypes = {
+    value: PropTypes.string.isRequired, // Ensures value is a string
+    onClick: PropTypes.func.isRequired, // Ensures onClick is a function
+};
 
 export default OneWayDP;

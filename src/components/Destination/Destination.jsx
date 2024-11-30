@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import AutocompleteSearch from "../AutocompleteSearch/AutocompleteSearch";
 
 const Destination = ({ defDestination }) => {
@@ -7,5 +8,9 @@ const Destination = ({ defDestination }) => {
         </div>
     );
 };
+
+Destination.propTypes ={
+    defDestination: PropTypes.string.isRequired,
+}
 
 export default Destination;

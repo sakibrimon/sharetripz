@@ -2,6 +2,7 @@ import { useState } from "react";
 import Autosuggest from "react-autosuggest";
 import "./style.css";
 import { useLoaderData } from "react-router";
+import PropTypes from "prop-types";
 
 const AutocompleteSearch = ({ defValue }) => {
   const [value, setValue] = useState(defValue); // Current input value
@@ -95,5 +96,9 @@ const AutocompleteSearch = ({ defValue }) => {
     />
   );
 };
+
+AutocompleteSearch.propTypes = {
+  defValue: PropTypes.string.isRequired,
+}
 
 export default AutocompleteSearch;

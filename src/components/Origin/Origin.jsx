@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import AutocompleteSearch from "../AutocompleteSearch/AutocompleteSearch";
 
 const Origin = ({ defOrigin }) => {
@@ -7,5 +8,9 @@ const Origin = ({ defOrigin }) => {
         </div>
     );
 };
+
+Origin.propTypes = {
+    defOrigin: PropTypes.string.isRequired,
+}
 
 export default Origin;

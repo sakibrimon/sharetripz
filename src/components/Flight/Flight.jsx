@@ -5,6 +5,7 @@ import RoundTripDP from "../RoundTripDP/RoundTripDP";
 import OneWayDP from "../OneWayDP/OneWayDP";
 import { IoIosSearch } from "react-icons/io";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 
 const Flight = ({ travelType, defOrigin, defDestination, defStartDate, defEndDate }) => {
@@ -39,5 +40,13 @@ const Flight = ({ travelType, defOrigin, defDestination, defStartDate, defEndDat
         </div>
     );
 };
+
+Flight.propTypes ={
+    travelType: PropTypes.string.isRequired,
+    defOrigin: PropTypes.string.isRequired,
+    defDestination: PropTypes.string.isRequired,
+    defStartDate: PropTypes.instanceOf(Date).isRequired,
+    defEndDate: PropTypes.instanceOf(Date).isRequired,
+}
 
 export default Flight;

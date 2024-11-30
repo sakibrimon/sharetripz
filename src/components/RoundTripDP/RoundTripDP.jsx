@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import { format } from "date-fns";
 
 import "react-datepicker/dist/react-datepicker.css";
+import PropTypes from "prop-types";
 
 const RoundTripDP = ({ defStartDate, defEndDate }) => {
   const [startDate, setStartDate] = useState(defStartDate);
@@ -66,5 +67,15 @@ const CustomInput = ({ value, onClick }) => (
     }}
   />
 );
+
+RoundTripDP.propTypes = {
+  defStartDate: PropTypes.instanceOf(Date).isRequired,
+  defEndDate: PropTypes.instanceOf(Date).isRequired,
+};
+
+CustomInput.propTypes = {
+  value: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
 
 export default RoundTripDP;

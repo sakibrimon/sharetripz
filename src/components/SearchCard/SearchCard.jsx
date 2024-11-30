@@ -1,6 +1,4 @@
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import Origin from "../Origin/Origin";
-import Destination from "../Destination/Destination";
 import { useState } from "react";
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 import Flights from "../Flights/Flights";
@@ -12,10 +10,6 @@ const SearchCard = () => {
     const dayAfterDayAfterTomorrow = addDays(tomorrow, 2); // Calculate the day after tomorrow
 
     const [travelType, setTravelType] = useState("Round Trip");
-    const [ports, setPorts] = useState({
-        origin: <Origin key="origin" />,
-        destination: <Destination key="destination" />,
-    });
 
     const [travelers, setTravelers] = useState({
         adults: 1,
@@ -27,13 +21,6 @@ const SearchCard = () => {
     const [ticketClass, setTicketClass] = useState("Economy"); // State for ticket class
 
     const maxTravelers = 7;
-
-    const swapPorts = () => {
-        setPorts((prevPorts) => ({
-            origin: prevPorts.destination,
-            destination: prevPorts.origin,
-        }));
-    };
 
     const updateTravelers = (type, action) => {
         setTravelers((prev) => {
