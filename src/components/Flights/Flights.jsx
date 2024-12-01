@@ -56,7 +56,7 @@ const Flights = ({ travelType, defOrigin0, defDestination0, defStartDate0, defOr
             {flights.map((flight, index) => (
                 <div key={flight.key} className="relative">
                     <div className="mt-5 flex justify-between items-center lg:hidden">
-                        <button className="btn btn-xs btn-info">{getOrdinalSuffix(index + 1)} Flight</button>
+                        <div className="btn btn-xs btn-info">{getOrdinalSuffix(index + 1)} Flight</div>
 
                         {/* Show Remove Button for Flights Beyond the First Two - on Smaller Screens */}
                         {index >= 2 && (
@@ -72,25 +72,25 @@ const Flights = ({ travelType, defOrigin0, defDestination0, defStartDate0, defOr
 
                     {/* Show Remove Button for Flights Beyond the First Two - on Larger Screens */}
                     {index >= 2 && (
-                        <button
+                        <div
                             className="absolute top-1/2 left-1/2# right-0 transform -translate-x-1/2 -translate-y-1/2 hidden lg:inline"
                             onClick={() => handleRemoveFlight(index)}
                             title="Remove Flight"
                         >
                             <MdCancel className="text-xl" />
-                        </button>
+                        </div>
                     )}
                 </div>
             ))}
 
-            <button
-                className="mt-5 btn btn-outline btn-info lg:btn-ghost flex gap-2 items-center disabled:opacity-50 disabled:cursor-not-allowed"
+            <div
+                className="mt-5 btn btn-outline btn-info lg:btn-ghost inline-flex gap-2 items-center disabled:opacity-50 disabled:cursor-not-allowed"
                 onClick={handleAddFlights}
                 disabled={flights.length >= 5} // Disable if flights are already 5
             >
                 <FaPlus />
                 <span>Add more flights</span>
-            </button>
+            </div>
         </div>
     );
 };
