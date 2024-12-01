@@ -122,7 +122,14 @@ const SearchCard = () => {
                                 {["adults", "children", "kids", "infants"].map((type) => (
                                     <li key={type} className="flex flex-row justify-between items-center">
                                         <span>
-                                            {type.charAt(0).toUpperCase() + type.slice(1)}{type === "infants" ? " (under 2 years)" : ""}
+                                            {type.charAt(0).toUpperCase() + type.slice(1)}
+                                            {
+                                                type === "adults" ? " (12 and above)" :
+                                                    type === "children" ? " (5 to u12)" :
+                                                        type === "kids" ? " (from 2 to u5)" :
+                                                            type === "infants" ? " (under 2 years)" :
+                                                                ""
+                                            }
                                         </span>
                                         <div>
                                             <CiCircleMinus className="text-2xl cursor-pointer"
@@ -177,21 +184,21 @@ const SearchCard = () => {
                 <div className="mt-5 flex gap-5">
                     <label className="cursor-pointer flex items-center gap-2">
                         <input
-                        type="radio"
-                        // name="radio-3"
-                        name="fareType"
-                        value="Regular Fare"
-                        className="radio radio-sm"
-                        defaultChecked />
+                            type="radio"
+                            // name="radio-3"
+                            name="fareType"
+                            value="Regular Fare"
+                            className="radio radio-sm"
+                            defaultChecked />
                         <span>Regular Fare</span>
                     </label>
                     <label className="cursor-pointer flex items-center gap-2">
                         <input
-                        type="radio"
-                        // name="radio-3"
-                        name="fareType"
-                        value="Student Fare"
-                        className="radio radio-sm" />
+                            type="radio"
+                            // name="radio-3"
+                            name="fareType"
+                            value="Student Fare"
+                            className="radio radio-sm" />
                         <span>Student Fare</span>
                     </label>
                 </div>
