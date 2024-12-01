@@ -60,11 +60,11 @@ const Flights = ({ travelType, defOrigin0, defDestination0, defStartDate0, defOr
 
                         {/* Show Remove Button for Flights Beyond the First Two - on Smaller Screens */}
                         {index >= 2 && (
-                            <button onClick={() => handleRemoveFlight(index)}
+                            <span onClick={() => handleRemoveFlight(index)}
                                 title="Remove Flight"
                             >
                                 <MdCancel className="text-xl" />
-                            </button>
+                            </span>
                         )}
                     </div>
 

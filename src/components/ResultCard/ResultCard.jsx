@@ -58,9 +58,9 @@ const ResultCard = () => {
                         </p>
                         <p className="mt-8 font-bold text-lg">{formatBDT(8710)}</p>
                         <p><s className="text-gray-400 text-sm">{formatBDT(9998)}</s></p>
-                        <button className="mt-4 btn btn-info text-white flex items-center">
+                        <div className="mt-4 btn btn-info text-white flex items-center">
                             <span>Select</span><MdOutlineKeyboardArrowRight className="text-2xl" />
-                        </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -115,9 +115,9 @@ const ResultCard = () => {
                             <s className="text-gray-400 text-sm">{formatBDT(9998)}</s>
                         </p>
                     </div>
-                    <button className="btn btn-info text-white flex items-center">
+                    <div className="btn btn-info text-white flex items-center">
                         <span>Select</span><MdOutlineKeyboardArrowRight className="text-2xl" />
-                    </button>
+                    </div>
                 </div>
             </div>
         </div>

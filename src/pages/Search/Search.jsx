@@ -30,7 +30,7 @@ const Search = () => {
                             </p>
                         </div>
                     </div>
-                    <button className="btn btn-warning"><MdOutlineModeEdit /></button>
+                    <div className="btn btn-warning"><MdOutlineModeEdit /></div>
                 </div>
             </div>
 

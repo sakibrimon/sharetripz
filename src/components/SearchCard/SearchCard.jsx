@@ -140,7 +140,7 @@ const SearchCard = () => {
                                         </div>
                                     </li>
                                 ))}
-                                <button className="btn btn-block">Done</button>
+                                <div className="btn btn-block">Done</div>
                             </ul>
                         </div>
 
