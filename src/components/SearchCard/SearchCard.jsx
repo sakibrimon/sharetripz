@@ -5,6 +5,7 @@ import Flights from "../Flights/Flights";
 import Flight from "../Flight/Flight";
 import { addDays } from "date-fns";
 import { IoIosSearch } from "react-icons/io";
+import { useNavigate } from "react-router";
 
 const SearchCard = () => {
     const tomorrow = addDays(new Date(), 1); // Calculate tomorrow
@@ -22,6 +23,8 @@ const SearchCard = () => {
     const [ticketClass, setTicketClass] = useState("Economy"); // State for ticket class
 
     const maxTravelers = 7;
+
+    const navigate = useNavigate();
 
     const updateTravelers = (type, action) => {
         setTravelers((prev) => {
@@ -59,9 +62,13 @@ const SearchCard = () => {
         return travelers.adults + travelers.children + travelers.kids + travelers.infants;
     };
 
+    const handleSearchFlight = () => {
+        navigate(`/flight-search`);
+    }
+
     return (
         <div className="mt-8 card bg-base-100 w-96# shadow-xl">
-            <div className="card-body">
+            <form className="card-body" onSubmit={handleSearchFlight}>
                 <div className="flex items-center dark:bg-gray-100# dark:text-gray-800#">
                     <a rel="noopener noreferrer" href="#" className="px-5 py-1 border-b-2 dark:border-violet-600 dark:text-violet-600">Flight</a>
                     <a rel="noopener noreferrer" href="#" className="px-5 py-1 border-b-2 dark:border-gray-300">Hotel</a>
@@ -74,7 +81,8 @@ const SearchCard = () => {
                     <div className="flex gap-2">
                         <label className="btn btn-xs lg:btn-sm cursor-pointer flex items-center gap-2">
                             <input type="radio"
-                                name="radio-1"
+                                // name="radio-1"
+                                name="travelType"
                                 value="One Way"
                                 className="radio radio-xs lg:radio-sm"
                                 onChange={(e) => setTravelType(e.target.value)}
@@ -83,7 +91,8 @@ const SearchCard = () => {
                         </label>
                         <label className="btn btn-xs lg:btn-sm cursor-pointer flex items-center gap-2">
                             <input type="radio"
-                                name="radio-1"
+                                // name="radio-1"
+                                name="travelType"
                                 value="Round Trip"
                                 className="radio radio-xs lg:radio-sm"
                                 defaultChecked
@@ -93,7 +102,8 @@ const SearchCard = () => {
                         </label>
                         <label className="btn btn-xs lg:btn-sm cursor-pointer flex items-center gap-2">
                             <input type="radio"
-                                name="radio-1"
+                                // name="radio-1"
+                                name="travelType"
                                 value="Multi City"
                                 className="radio radio-xs lg:radio-sm"
                                 onChange={(e) => setTravelType(e.target.value)}
@@ -137,8 +147,9 @@ const SearchCard = () => {
                                     <li key={cls}>
                                         <label className="cursor-pointer flex items-center gap-2">
                                             <input type="radio"
-                                                name="ticket-class"
+                                                name="ticketClass"
                                                 className="radio radio-sm"
+                                                value={cls}
                                                 checked={ticketClass === cls}
                                                 onChange={() => setTicketClass(cls)}
                                             />
@@ -156,7 +167,7 @@ const SearchCard = () => {
                 ) : (
                     <Flight travelType={travelType} defOrigin='DAC' defDestination='CXB' defStartDate={tomorrow} defEndDate={dayAfterDayAfterTomorrow} />
                 )}
-                <button className="mt-5 btn btn-warning">
+                <button className="mt-5 btn btn-warning" type="submit">
                     <span className="flex justify-center items-center gap-2 font-bold">
                         <IoIosSearch className="text-2xl" />
                         <span>Search Flight</span>
@@ -165,15 +176,26 @@ const SearchCard = () => {
 
                 <div className="mt-5 flex gap-5">
                     <label className="cursor-pointer flex items-center gap-2">
-                        <input type="radio" name="radio-3" className="radio radio-sm" defaultChecked />
+                        <input
+                        type="radio"
+                        // name="radio-3"
+                        name="fareType"
+                        value="Regular Fare"
+                        className="radio radio-sm"
+                        defaultChecked />
                         <span>Regular Fare</span>
                     </label>
                     <label className="cursor-pointer flex items-center gap-2">
-                        <input type="radio" name="radio-3" className="radio radio-sm" />
+                        <input
+                        type="radio"
+                        // name="radio-3"
+                        name="fareType"
+                        value="Student Fare"
+                        className="radio radio-sm" />
                         <span>Student Fare</span>
                     </label>
                 </div>
-            </div>
+            </form>
         </div>
     );
 };
