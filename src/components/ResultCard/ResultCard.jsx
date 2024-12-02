@@ -6,6 +6,7 @@ import { GiCommercialAirplane } from "react-icons/gi";
 const ResultCard = () => {
     return (
         <div>
+            {/* for larger screens */}
             <div className="mt-5 mx-2 rounded-lg card# bg-base-100 w-96# shadow-xl hidden lg:block">
                 <div className="p-8 card-body# flex justify-between">
                     <div className="space-y-5 w-[80%]">
@@ -38,12 +39,12 @@ const ResultCard = () => {
                             </div>
                             <div>
                                 <p className="font-bold">9:35 PM</p>
-                                <p>2 Dec, Mon</p>
+                                <p>4 Dec, Wed</p>
                                 <p className="font-light">Cox&apos;s Bazar Airp...</p>
                             </div>
                             <div>
                                 <p className="font-bold">10:40 PM</p>
-                                <p>2 Dec, Mon</p>
+                                <p>4 Dec, Wed</p>
                                 <p className="font-light">Hazrat Shahjalal...</p>
                             </div>
                             <div>
@@ -64,6 +65,8 @@ const ResultCard = () => {
                     </div>
                 </div>
             </div>
+
+            {/* for smaller screens */}
             <div className="mt-5 mx-2 rounded-lg card# bg-base-100 w-96# shadow-xl lg:hidden">
                 <div className="p-8 flex justify-between">
                     <div className="space-y-5 w-full">
@@ -87,8 +90,8 @@ const ResultCard = () => {
                         <div className="flex justify-between items-start">
                             <div>
                                 <p className="font-bold">9:35 PM</p>
-                                <p>Dhaka</p>
-                                <p className="font-light">2 Dec, Mon</p>
+                                <p>Cox&apos;s Bazar</p>
+                                <p className="font-light">4 Dec, Wed</p>
                             </div>
                             <div className="flex flex-col items-center">
                                 <p className="font-bold">1hr 5min</p>
@@ -97,8 +100,8 @@ const ResultCard = () => {
                             </div>
                             <div className="text-right">
                                 <p className="font-bold">10:40 PM</p>
-                                <p>Cox&apos;s Bazar</p>
-                                <p className="font-light">2 Dec, Mon</p>
+                                <p>Dhaka</p>
+                                <p className="font-light">4 Dec, Wed</p>
                             </div>
                         </div>
                     </div>
