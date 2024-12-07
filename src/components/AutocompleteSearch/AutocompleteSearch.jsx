@@ -4,7 +4,7 @@ import "./style.css";
 // import { useLoaderData } from "react-router";
 import PropTypes from "prop-types";
 
-const AutocompleteSearch = ({ defValue, airports }) => {
+const AutocompleteSearch = ({ portType, defValue, airports, setFlightDetails }) => {
   const [value, setValue] = useState(defValue); // Current input value
   const [lastValidValue, setLastValidValue] = useState(defValue); // Last explicitly selected valid value
   const [isItemSelected, setIsItemSelected] = useState(false); // Tracks if an item was explicitly selected
@@ -48,6 +48,12 @@ const AutocompleteSearch = ({ defValue, airports }) => {
   const onChange = (event, { newValue }) => {
     setValue(newValue);
     setIsItemSelected(false); // Reset selection tracking on manual input
+
+    setFlightDetails((prevDetails) => ({
+      ...prevDetails,
+      ...(portType === "origin" && { departureAirport: newValue }),
+      ...(portType === "destination" && { arrivalAirport: newValue }),
+    }));
   };
 
   const getSuggestionValue = (suggestion) => {
@@ -74,6 +80,12 @@ const AutocompleteSearch = ({ defValue, airports }) => {
       // Reset to the last valid value if no item was selected from the list
       if (!isItemSelected) {
         setValue(lastValidValue);
+
+        setFlightDetails((prevDetails) => ({
+          ...prevDetails,
+          ...(portType === "origin" && { departureAirport: lastValidValue }),
+          ...(portType === "destination" && { arrivalAirport: lastValidValue }),
+        }));
       }
     },
   };
@@ -98,8 +110,10 @@ const AutocompleteSearch = ({ defValue, airports }) => {
 };
 
 AutocompleteSearch.propTypes = {
+  portType: PropTypes.string.isRequired,
   defValue: PropTypes.string.isRequired,
   airports: PropTypes.array.isRequired,
+  setFlightDetails: PropTypes.func.isRequired,
 }
 
 export default AutocompleteSearch;

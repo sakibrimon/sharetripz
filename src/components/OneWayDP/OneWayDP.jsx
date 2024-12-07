@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import { format } from "date-fns";
 
@@ -7,8 +7,16 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./style.css"; // Adjust the path based on your file structure
 import PropTypes from "prop-types";
 
-const OneWayDP = ({ defStartDate }) => {
+const OneWayDP = ({ defStartDate, setFlightDetails }) => {
     const [startDate, setStartDate] = useState(defStartDate);
+
+    useEffect(() => {
+        setFlightDetails((prevDetails) => ({
+            ...prevDetails,
+            startFlyDate: startDate,
+        }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     // Custom date format: "29 Nov, Fri, 2024"
     const customDateFormat = (date) => format(date, "dd MMM, EEE, yyyy"); // Ensure correct display format
@@ -19,7 +27,14 @@ const OneWayDP = ({ defStartDate }) => {
         <div className="mt-4 lg:mt-0">
             <DatePicker
                 selected={startDate}
-                onChange={(date) => setStartDate(date)}
+                onChange={
+                    (date) => {
+                        setStartDate(date);
+                        setFlightDetails((prevDetails) => ({
+                            ...prevDetails,
+                            startFlyDate: date,
+                        }));
+                    }}
                 dateFormat="dd MMM, EEE, yyyy" // Custom format: e.g., 29 Nov, Fri, 2024
                 customInput={<CustomInput value={customDateFormat(startDate)} />}
                 minDate={today} // Disable dates before today
@@ -49,13 +64,14 @@ const CustomInput = ({ value, onClick, onFocus }) => (
 // Add PropTypes validation for OneWayDP
 OneWayDP.propTypes = {
     defStartDate: PropTypes.instanceOf(Date).isRequired, // Ensures defStartDate is a Date object
+    setFlightDetails: PropTypes.func.isRequired,
 };
 
 // Add PropTypes validation for CustomInput
 CustomInput.propTypes = {
     value: PropTypes.string.isRequired, // Ensures value is a string
-    onClick: PropTypes.func.isRequired, // Ensures onClick is a function
-    onFocus: PropTypes.func.isRequired,
+    onClick: PropTypes.func, // Ensures onClick is a function
+    onFocus: PropTypes.func,
 };
 
 export default OneWayDP;

@@ -7,7 +7,7 @@ import { addDays } from "date-fns";
 import PropTypes from "prop-types";
 import { getOrdinalSuffix } from "../../utils";
 
-const Flights = ({ travelType, defOrigin0, defDestination0, defStartDate0, defOrigin1, defDestination1, defStartDate1, airports }) => {
+const Flights = ({ travelType, defOrigin0, defDestination0, defStartDate0, defOrigin1, defDestination1, defStartDate1, airports, setFlightDetails }) => {
     const [flights, setFlights] = useState([
         <Flight
             key={0}
@@ -16,6 +16,7 @@ const Flights = ({ travelType, defOrigin0, defDestination0, defStartDate0, defOr
             defDestination={defDestination0}
             defStartDate={defStartDate0}
             airports={airports}
+            setFlightDetails={setFlightDetails}
         />,
         <Flight
             key={1}
@@ -24,6 +25,7 @@ const Flights = ({ travelType, defOrigin0, defDestination0, defStartDate0, defOr
             defDestination={defDestination1}
             defStartDate={defStartDate1}
             airports={airports}
+            setFlightDetails={setFlightDetails}
         />,
     ]);
 
@@ -107,6 +109,7 @@ Flights.propTypes = {
     defStartDate1: PropTypes.instanceOf(Date).isRequired,
     defEndDate1: PropTypes.instanceOf(Date).isRequired,
     airports: PropTypes.array.isRequired,
+    setFlightDetails: PropTypes.func.isRequired,
 }
 
 export default Flights;

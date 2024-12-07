@@ -7,10 +7,10 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { RiArrowUpDownLine } from "react-icons/ri";
 
-const Flight = ({ travelType, defOrigin, defDestination, defStartDate, defEndDate, airports }) => {
+const Flight = ({ travelType, defOrigin, defDestination, defStartDate, defEndDate, airports, setFlightDetails }) => {
     const [ports, setPorts] = useState({
-        origin: <Origin key="origin" defOrigin={defOrigin} airports={airports} />,
-        destination: <Destination key="destination" defDestination={defDestination} airports={airports} />,
+        origin: <Origin key="origin" defOrigin={defOrigin} airports={airports} setFlightDetails={setFlightDetails} />,
+        destination: <Destination key="destination" defDestination={defDestination} airports={airports} setFlightDetails={setFlightDetails} />,
     });
 
     const swapPorts = () => {
@@ -18,6 +18,11 @@ const Flight = ({ travelType, defOrigin, defDestination, defStartDate, defEndDat
             origin: prevPorts.destination,
             destination: prevPorts.origin,
         }));
+        setFlightDetails((prevDetails) => ({
+            ...prevDetails,
+            departureAirport: prevDetails.arrivalAirport,
+            arrivalAirport: prevDetails.departureAirport,
+          }));
     };
 
     return (
@@ -29,9 +34,9 @@ const Flight = ({ travelType, defOrigin, defDestination, defStartDate, defEndDat
                 {ports.destination}
             </>
             {travelType === "Round Trip" ? (
-                <RoundTripDP defStartDate={defStartDate} defEndDate={defEndDate} />
+                <RoundTripDP defStartDate={defStartDate} defEndDate={defEndDate} setFlightDetails={setFlightDetails} />
             ) : (
-                <OneWayDP defStartDate={defStartDate} />
+                <OneWayDP defStartDate={defStartDate} setFlightDetails={setFlightDetails} />
             )}
         </div>
     );
@@ -44,6 +49,7 @@ Flight.propTypes = {
     defStartDate: PropTypes.instanceOf(Date).isRequired,
     defEndDate: PropTypes.instanceOf(Date).isRequired,
     airports: PropTypes.array.isRequired,
+    setFlightDetails: PropTypes.func.isRequired,
 }
 
 export default Flight;

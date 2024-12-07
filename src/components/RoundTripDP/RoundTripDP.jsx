@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
-import { format } from "date-fns";
+import { addDays, format } from "date-fns";
 
 import "react-datepicker/dist/react-datepicker.css";
 import PropTypes from "prop-types";
 
-const RoundTripDP = ({ defStartDate, defEndDate }) => {
+const RoundTripDP = ({ defStartDate, defEndDate, setFlightDetails }) => {
   const [startDate, setStartDate] = useState(defStartDate);
   const [endDate, setEndDate] = useState(defEndDate);
+
+  useEffect(() => {
+    setFlightDetails((prevDetails) => ({
+      ...prevDetails,
+      startFlyDate: startDate,
+      endFlyDate: endDate,
+    }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
 
   // Custom date format: "28 Nov, Thu, 2024"
   const customDateFormat = (date) => (date ? format(date, "dd MMM, EEE, yyyy") : "");
@@ -15,12 +25,22 @@ const RoundTripDP = ({ defStartDate, defEndDate }) => {
   const handleStartDateChange = (date) => {
     setStartDate(date);
     if (date > endDate) {
-      setEndDate(null); // Set endDate to null if startDate is greater
+      // setEndDate(null); // Set endDate to null if startDate is greater
+      setEndDate(addDays(date, 2));
     }
+    setFlightDetails((prevDetails) => ({
+      ...prevDetails,
+      startFlyDate: date,
+      ...(date > endDate && { endFlyDate: addDays(date, 2) }),
+    }));
   };
 
   const handleEndDateChange = (date) => {
     setEndDate(date);
+    setFlightDetails((prevDetails) => ({
+      ...prevDetails,
+      endFlyDate: date,
+    }));
   };
 
   const today = new Date(); // Get today's date
@@ -72,12 +92,13 @@ const CustomInput = ({ value, onClick, onFocus }) => (
 RoundTripDP.propTypes = {
   defStartDate: PropTypes.instanceOf(Date).isRequired,
   defEndDate: PropTypes.instanceOf(Date).isRequired,
+  setFlightDetails: PropTypes.func.isRequired,
 };
 
 CustomInput.propTypes = {
   value: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  onFocus: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
+  onFocus: PropTypes.func,
 };
 
 export default RoundTripDP;

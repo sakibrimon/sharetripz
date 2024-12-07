@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import AutocompleteSearch from "../AutocompleteSearch/AutocompleteSearch";
 
-const Origin = ({ defOrigin, airports }) => {
+const Origin = ({ defOrigin, airports, setFlightDetails }) => {
     return (
         <div>
-            <AutocompleteSearch defValue={defOrigin} airports={airports} />
+            <AutocompleteSearch portType="origin" defValue={defOrigin} airports={airports} setFlightDetails={setFlightDetails} />
         </div>
     );
 };
@@ -12,6 +12,7 @@ const Origin = ({ defOrigin, airports }) => {
 Origin.propTypes = {
     defOrigin: PropTypes.string.isRequired,
     airports: PropTypes.array.isRequired,
+    setFlightDetails: PropTypes.func.isRequired,
 }
 
 export default Origin;

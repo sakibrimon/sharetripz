@@ -38,6 +38,7 @@ const SearchCard = () => {
                 console.error('Failed to fetch airports:', err);
                 setIsLoading(false); // Ensure loading is marked as complete even if fetch fails
             });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // Log airports after it is updated
@@ -101,12 +102,23 @@ const SearchCard = () => {
         return travelers.adults + travelers.children + travelers.kids + travelers.infants;
     };
 
+    const [flightDetails, setFlightDetails] = useState({
+        departureAirport: 'DAC',
+        arrivalAirport: 'CXB',
+        startFlyDate: tomorrow,
+        endFlyDate: dayAfterDayAfterTomorrow
+    });
+
     const handleSearchFlight = e => {
         e.preventDefault();
-        const adults = travelers.adults; 
-        const children = travelers.children; 
-        const infants = travelers.infants; 
-        console.log(adults, children, infants);
+        const adults = travelers.adults;
+        const children = travelers.children;
+        const infants = travelers.infants;
+        if (travelType === "Round Trip") {
+            console.log(adults, children, infants, flightDetails.departureAirport, flightDetails.arrivalAirport, flightDetails.startFlyDate, flightDetails.endFlyDate);
+        } else if (travelType === "One Way") {
+            console.log(adults, children, infants, flightDetails.departureAirport, flightDetails.arrivalAirport, flightDetails.startFlyDate);
+        }
         navigate(`/flight-search`);
     }
 
@@ -268,16 +280,18 @@ const SearchCard = () => {
                 </div>
 
                 {travelType === "Multi City" ? (
-                    <Flights travelType={travelType} defOrigin0='DAC' defDestination0='CXB' defStartDate0={tomorrow} defOrigin1='CXB' defDestination1='JFK' defStartDate1={dayAfterDayAfterTomorrow} airports={airports} />
+                    <Flights travelType={travelType} defOrigin0={flightDetails.departureAirport} defDestination0={flightDetails.arrivalAirport} defStartDate0={tomorrow} defOrigin1={flightDetails.arrivalAirport} defDestination1='JFK' defStartDate1={dayAfterDayAfterTomorrow} airports={airports} setFlightDetails={setFlightDetails} />
                 ) : (
-                    <Flight travelType={travelType} defOrigin='DAC' defDestination='CXB' defStartDate={tomorrow} defEndDate={dayAfterDayAfterTomorrow} airports={airports} />
+                    <Flight travelType={travelType} defOrigin={flightDetails.departureAirport} defDestination={flightDetails.arrivalAirport} defStartDate={tomorrow} defEndDate={dayAfterDayAfterTomorrow} airports={airports} setFlightDetails={setFlightDetails} />
                 )}
-                <button className="mt-5 btn btn-warning" type="submit">
-                    <span className="flex justify-center items-center gap-2 font-bold">
-                        <IoIosSearch className="text-2xl" />
-                        <span>Search Flight</span>
-                    </span>
-                </button>
+                {travelType !== "Multi City" && (
+                    <button className="mt-5 btn btn-warning" type="submit">
+                        <span className="flex justify-center items-center gap-2 font-bold">
+                            <IoIosSearch className="text-2xl" />
+                            <span>Search Flight</span>
+                        </span>
+                    </button>
+                )}
 
                 <div className="mt-5 flex gap-5">
                     <label className="cursor-pointer flex items-center gap-2">
