@@ -11,7 +11,7 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />,
-                loader: () => fetch('/airports.json'),
+                // loader: () => fetch('/airports.json'),
             },
             {
                 path: '/flight-search',

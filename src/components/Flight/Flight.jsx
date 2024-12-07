@@ -7,10 +7,10 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { RiArrowUpDownLine } from "react-icons/ri";
 
-const Flight = ({ travelType, defOrigin, defDestination, defStartDate, defEndDate }) => {
+const Flight = ({ travelType, defOrigin, defDestination, defStartDate, defEndDate, airports }) => {
     const [ports, setPorts] = useState({
-        origin: <Origin key="origin" defOrigin={defOrigin} />,
-        destination: <Destination key="destination" defDestination={defDestination} />,
+        origin: <Origin key="origin" defOrigin={defOrigin} airports={airports} />,
+        destination: <Destination key="destination" defDestination={defDestination} airports={airports} />,
     });
 
     const swapPorts = () => {
@@ -43,6 +43,7 @@ Flight.propTypes = {
     defDestination: PropTypes.string.isRequired,
     defStartDate: PropTypes.instanceOf(Date).isRequired,
     defEndDate: PropTypes.instanceOf(Date).isRequired,
+    airports: PropTypes.array.isRequired,
 }
 
 export default Flight;

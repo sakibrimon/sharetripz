@@ -1,5 +1,5 @@
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 import Flights from "../Flights/Flights";
 import Flight from "../Flight/Flight";
@@ -8,6 +8,45 @@ import { IoIosSearch } from "react-icons/io";
 import { useNavigate } from "react-router";
 
 const SearchCard = () => {
+    const [airports, setAirports] = useState([]); // Airports data
+    const [isLoading, setIsLoading] = useState(true); // Loading state
+
+    useEffect(() => {
+        const storedAirports = localStorage.getItem('airports');
+        if (storedAirports) {
+            setAirports(JSON.parse(storedAirports)); // Parse and set stored airports
+            setIsLoading(false); // Mark loading as complete
+            return;
+        }
+
+        fetch('https://proxy.cors.sh/https://ota-api.a4aero.com/api/settings/airports', {
+            headers: {
+                'x-cors-api-key': 'temp_e8a001540d0e7452d257d647f5adc0ca',
+            },
+        })
+            .then((response) => {
+                if (response.ok) return response.json();
+                throw new Error('Network response was not ok.');
+            })
+            .then((data) => {
+                setAirports(data.data); // Set fetched airports
+                localStorage.setItem('airports', JSON.stringify(data.data)); // Store airports in localStorage
+                console.log("all the airports (0):", airports);
+                setIsLoading(false); // Mark loading as complete
+            })
+            .catch((err) => {
+                console.error('Failed to fetch airports:', err);
+                setIsLoading(false); // Ensure loading is marked as complete even if fetch fails
+            });
+    }, []);
+
+    // Log airports after it is updated
+    useEffect(() => {
+        if (airports.length > 0) {
+            console.log("all the airports (1):", airports);
+        }
+    }, [airports]);
+
     const tomorrow = addDays(new Date(), 1); // Calculate tomorrow
     const dayAfterDayAfterTomorrow = addDays(tomorrow, 2); // Calculate the day after tomorrow
 
@@ -64,6 +103,16 @@ const SearchCard = () => {
 
     const handleSearchFlight = () => {
         navigate(`/flight-search`);
+    }
+
+    // Show a loading spinner or message while fetching
+    if (isLoading) {
+        return (
+            <div>
+                <p className="text-white font-bold text-center lg:text-left">Loading airports...</p>
+                <span className="loading loading-bars loading-lg"></span>
+            </div>
+        );
     }
 
     return (
@@ -170,9 +219,9 @@ const SearchCard = () => {
                 </div>
 
                 {travelType === "Multi City" ? (
-                    <Flights travelType={travelType} defOrigin0='DAC' defDestination0='CXB' defStartDate0={tomorrow} defOrigin1='CXB' defDestination1='JFK' defStartDate1={dayAfterDayAfterTomorrow} />
+                    <Flights travelType={travelType} defOrigin0='DAC' defDestination0='CXB' defStartDate0={tomorrow} defOrigin1='CXB' defDestination1='JFK' defStartDate1={dayAfterDayAfterTomorrow} airports={airports} />
                 ) : (
-                    <Flight travelType={travelType} defOrigin='DAC' defDestination='CXB' defStartDate={tomorrow} defEndDate={dayAfterDayAfterTomorrow} />
+                    <Flight travelType={travelType} defOrigin='DAC' defDestination='CXB' defStartDate={tomorrow} defEndDate={dayAfterDayAfterTomorrow} airports={airports} />
                 )}
                 <button className="mt-5 btn btn-warning" type="submit">
                     <span className="flex justify-center items-center gap-2 font-bold">

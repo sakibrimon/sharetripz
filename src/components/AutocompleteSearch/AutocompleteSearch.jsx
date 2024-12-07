@@ -1,38 +1,38 @@
 import { useState } from "react";
 import Autosuggest from "react-autosuggest";
 import "./style.css";
-import { useLoaderData } from "react-router";
+// import { useLoaderData } from "react-router";
 import PropTypes from "prop-types";
 
-const AutocompleteSearch = ({ defValue }) => {
+const AutocompleteSearch = ({ defValue, airports }) => {
   const [value, setValue] = useState(defValue); // Current input value
   const [lastValidValue, setLastValidValue] = useState(defValue); // Last explicitly selected valid value
   const [isItemSelected, setIsItemSelected] = useState(false); // Tracks if an item was explicitly selected
   const [suggestions, setSuggestions] = useState([]);
 
   // Airports data
-  let airports = [
-    { iata_code: "DAC", name: "Hazrat Shahjalal International Airport" },
-    { iata_code: "CXB", name: "Cox's Bazar Airport" },
-    { iata_code: "JFK", name: "John F. Kennedy International Airport" },
-    { iata_code: "BKK", name: "Suvarnabhumi Airport" },
-    { iata_code: "KUL", name: "Kuala Lumpur International Airport" },
-    { iata_code: "CGP", name: "Shah Amanat International Airport" },
-    { iata_code: "LHR", name: "Heathrow Airport" },
-    { iata_code: "DXB", name: "Dubai International Airport" },
-    { iata_code: "SYD", name: "Sydney Kingsford Smith Airport" },
-    { iata_code: "HND", name: "Tokyo Haneda Airport" },
-    { iata_code: "LAX", name: "Los Angeles International Airport" },
-    { iata_code: "ATL", name: "Hartsfield-Jackson Atlanta Airport" },
-    { iata_code: "FRA", name: "Frankfurt Airport" }
-  ];
-  airports = useLoaderData();
+  // let airports = [
+  //   { code: "DAC", name: "Hazrat Shahjalal International Airport" },
+  //   { code: "CXB", name: "Cox's Bazar Airport" },
+  //   { code: "JFK", name: "John F. Kennedy International Airport" },
+  //   { code: "BKK", name: "Suvarnabhumi Airport" },
+  //   { code: "KUL", name: "Kuala Lumpur International Airport" },
+  //   { code: "CGP", name: "Shah Amanat International Airport" },
+  //   { code: "LHR", name: "Heathrow Airport" },
+  //   { code: "DXB", name: "Dubai International Airport" },
+  //   { code: "SYD", name: "Sydney Kingsford Smith Airport" },
+  //   { code: "HND", name: "Tokyo Haneda Airport" },
+  //   { code: "LAX", name: "Los Angeles International Airport" },
+  //   { code: "ATL", name: "Hartsfield-Jackson Atlanta Airport" },
+  //   { code: "FRA", name: "Frankfurt Airport" }
+  // ];
+  // airports = useLoaderData();
 
   const getSuggestions = (inputValue) => {
     const regex = new RegExp(inputValue.trim(), "i");
     return airports.filter(
       (airport) =>
-        regex.test(airport.name) || regex.test(airport.iata_code)
+        regex.test(airport.cityName) || regex.test(airport.name) || regex.test(airport.code)
     );
   };
 
@@ -52,16 +52,16 @@ const AutocompleteSearch = ({ defValue }) => {
 
   const getSuggestionValue = (suggestion) => {
     // Update the value and last valid value when a suggestion is selected
-    setLastValidValue(suggestion.iata_code);
+    setLastValidValue(suggestion.code);
     setIsItemSelected(true); // Mark the item as explicitly selected
-    return suggestion.iata_code;
+    return suggestion.code;
   };
 
   const renderSuggestion = (suggestion) => {
     const isLongName = suggestion.name.length > 10;
     return (
       <div className={`suggestion ${isLongName ? "ellipsis" : ""}`}>
-        {suggestion.iata_code} - {suggestion.name}
+        {suggestion.code} - {suggestion.cityName} - {suggestion.name}
       </div>
     );
   };
@@ -99,6 +99,7 @@ const AutocompleteSearch = ({ defValue }) => {
 
 AutocompleteSearch.propTypes = {
   defValue: PropTypes.string.isRequired,
+  airports: PropTypes.array.isRequired,
 }
 
 export default AutocompleteSearch;

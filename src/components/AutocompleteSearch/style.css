@@ -34,7 +34,8 @@
 
 /* Suggestion with ellipsis when text is more than 10 characters */
 .suggestion.ellipsis {
-  max-width: 200px; /* You can adjust this as per your layout */
+  /* You can adjust this as per your layout */
+  max-width: 200px;
   display: inline-block;
   text-overflow: ellipsis;
   overflow: hidden;

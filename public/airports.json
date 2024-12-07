@@ -1,7 +1,7 @@
 [
     {
         "name": "Hazrat Shahjalal International Airport",
-        "iata_code": "DAC",
+        "code": "DAC",
         "icao_code": "VGHS",
         "city": "Dhaka",
         "country": "Bangladesh",
@@ -11,7 +11,7 @@
     },
     {
         "name": "Cox's Bazar Airport",
-        "iata_code": "CXB",
+        "code": "CXB",
         "icao_code": "VGCB",
         "city": "Cox's Bazar",
         "country": "Bangladesh",
@@ -21,7 +21,7 @@
     },
     {
         "name": "John F. Kennedy International Airport",
-        "iata_code": "JFK",
+        "code": "JFK",
         "icao_code": "KJFK",
         "city": "New York",
         "country": "United States",
@@ -31,7 +31,7 @@
     },
     {
         "name": "Suvarnabhumi Airport",
-        "iata_code": "BKK",
+        "code": "BKK",
         "icao_code": "VTBS",
         "city": "Bangkok",
         "country": "Thailand",
@@ -41,7 +41,7 @@
     },
     {
         "name": "Kuala Lumpur International Airport",
-        "iata_code": "KUL",
+        "code": "KUL",
         "icao_code": "WMKK",
         "city": "Kuala Lumpur",
         "country": "Malaysia",
@@ -51,7 +51,7 @@
     },
     {
         "name": "Shah Amanat International Airport",
-        "iata_code": "CGP",
+        "code": "CGP",
         "icao_code": "VGEG",
         "city": "Chattogram",
         "country": "Bangladesh",
@@ -61,7 +61,7 @@
     },
     {
         "name": "Heathrow Airport",
-        "iata_code": "LHR",
+        "code": "LHR",
         "icao_code": "EGLL",
         "city": "London",
         "country": "United Kingdom",
@@ -71,7 +71,7 @@
     },
     {
         "name": "Dubai International Airport",
-        "iata_code": "DXB",
+        "code": "DXB",
         "icao_code": "OMDB",
         "city": "Dubai",
         "country": "United Arab Emirates",
@@ -81,7 +81,7 @@
     },
     {
         "name": "Sydney Kingsford Smith Airport",
-        "iata_code": "SYD",
+        "code": "SYD",
         "icao_code": "YSSY",
         "city": "Sydney",
         "country": "Australia",
@@ -91,7 +91,7 @@
     },
     {
         "name": "Tokyo Haneda Airport",
-        "iata_code": "HND",
+        "code": "HND",
         "icao_code": "RJTT",
         "city": "Tokyo",
         "country": "Japan",
@@ -101,7 +101,7 @@
     },
     {
         "name": "Los Angeles International Airport",
-        "iata_code": "LAX",
+        "code": "LAX",
         "icao_code": "KLAX",
         "city": "Los Angeles",
         "country": "United States",
@@ -111,7 +111,7 @@
     },
     {
         "name": "Hartsfield-Jackson Atlanta International Airport",
-        "iata_code": "ATL",
+        "code": "ATL",
         "icao_code": "KATL",
         "city": "Atlanta",
         "country": "United States",
@@ -121,7 +121,7 @@
     },
     {
         "name": "Frankfurt am Main Airport",
-        "iata_code": "FRA",
+        "code": "FRA",
         "icao_code": "EDDF",
         "city": "Frankfurt",
         "country": "Germany",

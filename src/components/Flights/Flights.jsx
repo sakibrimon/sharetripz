@@ -2,12 +2,12 @@ import { useState } from "react";
 import Flight from "../Flight/Flight";
 import { FaPlus } from "react-icons/fa6";
 import { MdCancel } from "react-icons/md";
-import { useLoaderData } from "react-router";
+// import { useLoaderData } from "react-router";
 import { addDays } from "date-fns";
 import PropTypes from "prop-types";
 import { getOrdinalSuffix } from "../../utils";
 
-const Flights = ({ travelType, defOrigin0, defDestination0, defStartDate0, defOrigin1, defDestination1, defStartDate1 }) => {
+const Flights = ({ travelType, defOrigin0, defDestination0, defStartDate0, defOrigin1, defDestination1, defStartDate1, airports }) => {
     const [flights, setFlights] = useState([
         <Flight
             key={0}
@@ -15,6 +15,7 @@ const Flights = ({ travelType, defOrigin0, defDestination0, defStartDate0, defOr
             defOrigin={defOrigin0}
             defDestination={defDestination0}
             defStartDate={defStartDate0}
+            airports={airports}
         />,
         <Flight
             key={1}
@@ -22,16 +23,17 @@ const Flights = ({ travelType, defOrigin0, defDestination0, defStartDate0, defOr
             defOrigin={defOrigin1}
             defDestination={defDestination1}
             defStartDate={defStartDate1}
+            airports={airports}
         />,
     ]);
 
-    const airports = useLoaderData();
+    // const airports = useLoaderData();
 
     const handleAddFlights = () => {
         setFlights((prevFlights) => {
             const lastFlight = prevFlights[prevFlights.length - 1];
             const defOrigin = lastFlight.props.defDestination; // Set defOrigin to the last flight's defDestination
-            const defDestination = airports[prevFlights.length + 1]?.iata_code || ""; // Get the iata_code based on the length
+            const defDestination = airports[prevFlights.length + 1]?.code || ""; // Get the code based on the length
             const newFlight = (
                 <Flight
                     key={prevFlights.length}
@@ -104,6 +106,7 @@ Flights.propTypes = {
     defDestination1: PropTypes.string.isRequired,
     defStartDate1: PropTypes.instanceOf(Date).isRequired,
     defEndDate1: PropTypes.instanceOf(Date).isRequired,
+    airports: PropTypes.array.isRequired,
 }
 
 export default Flights;
