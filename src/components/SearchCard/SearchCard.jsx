@@ -109,18 +109,70 @@ const SearchCard = () => {
         endFlyDate: dayAfterDayAfterTomorrow
     });
 
-    const handleSearchFlight = e => {
+    const handleSearchFlight = async (e) => {
         e.preventDefault();
-        const adults = travelers.adults;
-        const children = travelers.children;
-        const infants = travelers.infants;
-        if (travelType === "Round Trip") {
-            console.log(adults, children, infants, flightDetails.departureAirport, flightDetails.arrivalAirport, flightDetails.startFlyDate, flightDetails.endFlyDate);
-        } else if (travelType === "One Way") {
-            console.log(adults, children, infants, flightDetails.departureAirport, flightDetails.arrivalAirport, flightDetails.startFlyDate);
+
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjA5NDc3NzM1LWFhZWMtNGVmZS04ZjhjLTQxYzc0YTlkNDQxNiIsInVuaXF1ZV9uYW1lIjoiQVBQIiwiZW1haWwiOiJtYWlsLnBhcnZlemFsYW1AZ21haWwuY29tIiwianRpIjoiNGE0MTk0YzktZGVlYy00OWUwLTkzNWUtM2I0YzA4ZjdkNjRkIiwiVXNlcklkIjoiMSIsIkFwcElkIjoiMiIsIlJvbGVJZHMiOiJBcHAiLCJOYW1lIjoiQXBwIiwiR3NhSWQiOiIxMDEiLCJBZ2VudElkIjoiMTAwMyIsIkdzYSI6IiIsIkFnZW50IjoiIiwiZXhwIjoxNzY0ODM5NDE0LCJpc3MiOiJBNEEgT1RBIEFQUCIsImF1ZCI6IkFwcFVJIn0.kkX48bjL6VWMRR7LclnU3KDDgFfoumIWS0yN7FO95B4"; // Replace with the actual token
+        const requestData = {
+            OriginDestinationOptions: [
+                {
+                    DepartureAirport: flightDetails.departureAirport,
+                    ArrivalAirport: flightDetails.arrivalAirport,
+                    FlyDate: flightDetails.startFlyDate.toISOString().split("T")[0], // Format date to YYYY-MM-DD
+                },
+                ...(travelType === "Round Trip"
+                    ? [
+                        {
+                            DepartureAirport: flightDetails.arrivalAirport,
+                            ArrivalAirport: flightDetails.departureAirport,
+                            FlyDate: flightDetails.endFlyDate.toISOString().split("T")[0], // Format date to YYYY-MM-DD
+                        },
+                    ]
+                    : []),
+            ],
+            Passengers: [
+                {
+                    PassengerType: "ADT",
+                    Quantity: travelers.adults,
+                },
+                {
+                    PassengerType: "CHD",
+                    Quantity: travelers.children,
+                },
+                {
+                    PassengerType: "INF",
+                    Quantity: travelers.infants,
+                },
+            ],
+            ApiId: 1003,
+        };
+
+        console.log("Request Data:", requestData);
+
+        try {
+            const response = await fetch("https://proxy.cors.sh/https://ota-api.a4aero.com/api/flights/search", {
+                method: "POST",
+                headers: {
+                    'x-cors-api-key': 'temp_e8a001540d0e7452d257d647f5adc0ca',
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(requestData),
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to fetch flight search results");
+            }
+
+            const result = await response.json();
+            console.log("API Response:", result);
+
+            // Navigate to `/flight-search` with results
+            navigate("/flight-search", { state: { searchResults: result } });
+        } catch (error) {
+            console.error("Error during flight search:", error);
         }
-        navigate(`/flight-search`);
-    }
+    };
 
     // Show a loading spinner or message while fetching
     if (isLoading) {
