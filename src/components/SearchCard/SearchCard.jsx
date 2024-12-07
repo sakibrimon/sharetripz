@@ -101,7 +101,12 @@ const SearchCard = () => {
         return travelers.adults + travelers.children + travelers.kids + travelers.infants;
     };
 
-    const handleSearchFlight = () => {
+    const handleSearchFlight = e => {
+        e.preventDefault();
+        const adults = travelers.adults; 
+        const children = travelers.children; 
+        const infants = travelers.infants; 
+        console.log(adults, children, infants);
         navigate(`/flight-search`);
     }
 
@@ -168,27 +173,71 @@ const SearchCard = () => {
                                 <span>{getTotalTravelers()} Traveler{getTotalTravelers() > 1 ? "s" : ""}</span> <MdOutlineKeyboardArrowDown />
                             </div>
                             <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-[310px] p-2 shadow">
-                                {["adults", "children", "kids", "infants"].map((type) => (
-                                    <li key={type} className="flex flex-row justify-between items-center">
-                                        <span>
-                                            {type.charAt(0).toUpperCase() + type.slice(1)}
-                                            {
-                                                type === "adults" ? " (12 and above)" :
-                                                    type === "children" ? " (5 to u12)" :
-                                                        type === "kids" ? " (from 2 to u5)" :
-                                                            type === "infants" ? " (under 2 years)" :
-                                                                ""
-                                            }
-                                        </span>
-                                        <div>
-                                            <CiCircleMinus className="text-2xl cursor-pointer"
-                                                onClick={() => updateTravelers(type, "decrement")} />
-                                            <span className="mx-2">{travelers[type]}</span>
-                                            <CiCirclePlus className="text-2xl cursor-pointer"
-                                                onClick={() => updateTravelers(type, "increment")} />
-                                        </div>
-                                    </li>
-                                ))}
+                                {/* Adults */}
+                                <li className="flex flex-row justify-between items-center">
+                                    <span>Adults (12 and above)</span>
+                                    <div>
+                                        <CiCircleMinus
+                                            className="text-2xl cursor-pointer"
+                                            onClick={() => updateTravelers("adults", "decrement")}
+                                        />
+                                        <span className="mx-2">{travelers.adults}</span>
+                                        <CiCirclePlus
+                                            className="text-2xl cursor-pointer"
+                                            onClick={() => updateTravelers("adults", "increment")}
+                                        />
+                                    </div>
+                                </li>
+
+                                {/* Children */}
+                                <li className="flex flex-row justify-between items-center">
+                                    <span>Children (2 to u12)</span>
+                                    <div>
+                                        <CiCircleMinus
+                                            className="text-2xl cursor-pointer"
+                                            onClick={() => updateTravelers("children", "decrement")}
+                                        />
+                                        <span className="mx-2">{travelers.children}</span>
+                                        <CiCirclePlus
+                                            className="text-2xl cursor-pointer"
+                                            onClick={() => updateTravelers("children", "increment")}
+                                        />
+                                    </div>
+                                </li>
+
+                                {/* Kids */}
+                                {/* <li className="flex flex-row justify-between items-center">
+                                    <span>Kids (from 2 to under 5)</span>
+                                    <div>
+                                        <CiCircleMinus
+                                            className="text-2xl cursor-pointer"
+                                            onClick={() => updateTravelers("kids", "decrement")}
+                                        />
+                                        <span className="mx-2">{travelers.kids}</span>
+                                        <CiCirclePlus
+                                            className="text-2xl cursor-pointer"
+                                            onClick={() => updateTravelers("kids", "increment")}
+                                        />
+                                    </div>
+                                </li> */}
+
+                                {/* Infants */}
+                                <li className="flex flex-row justify-between items-center">
+                                    <span>Infants (under 2 years)</span>
+                                    <div>
+                                        <CiCircleMinus
+                                            className="text-2xl cursor-pointer"
+                                            onClick={() => updateTravelers("infants", "decrement")}
+                                        />
+                                        <span className="mx-2">{travelers.infants}</span>
+                                        <CiCirclePlus
+                                            className="text-2xl cursor-pointer"
+                                            onClick={() => updateTravelers("infants", "increment")}
+                                        />
+                                    </div>
+                                </li>
+
+                                {/* Done Button */}
                                 <div className="btn btn-block">Done</div>
                             </ul>
                         </div>
