@@ -148,7 +148,7 @@ const ResultCard = ({ result }) => {
                             </div>)}
                     </div>
                 </div>
-                <div className="py-2 pl-8 bg-base-200 flex justify-between items-center">
+                <div className="py-2 px-8 bg-base-200 flex justify-between items-center">
                     <div>
                         <p className="flex gap-2 items-center">
                             <HiTicket className="text-green-400" /> <span className="font-medium">AMEX1124</span>
