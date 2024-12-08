@@ -3,15 +3,16 @@ import ResultCard from "../../components/ResultCard/ResultCard";
 import { FaArrowRight } from "react-icons/fa6";
 import { useLocation } from "react-router";
 import { useEffect, useState } from "react";
+import { getCityNameByCode } from "../../utils";
 
 const Search = () => {
     const location = useLocation();
     const [searchResults, setSearchResults] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        const searchParams = new URLSearchParams(location.search);
+    const searchParams = new URLSearchParams(location.search);
 
+    useEffect(() => {
         const requestData = {
             OriginDestinationOptions: [
                 {
@@ -57,6 +58,7 @@ const Search = () => {
             .then((data) => {
                 setSearchResults(data);
                 setIsLoading(false);
+                console.log("search resultsssss", data);
             })
             .catch((err) => {
                 console.error("Error fetching flight data:", err);
@@ -70,50 +72,59 @@ const Search = () => {
 
     return (
         <div>
-            <h1>Flight Search Results</h1>
+            {/* <h1>Flight Search Results</h1>
             {searchResults ? (
                 <pre>{JSON.stringify(searchResults, null, 2)}</pre>
             ) : (
                 <p>No results found.</p>
-            )}
-            
-            {/* <div className="bg-base-300">
+            )} */}
+
+            <div className="bg-base-300">
                 <div className="py-3 lg:w-[80%] mx-auto flex justify-between items-center">
                     <div className="hidden lg:inline">
-                        <h3 className="font-bold text-lg text-left">Dhaka (DAC) — Cox&apos;s Bazar (CXB)</h3>
+                        {/* <h3 className="font-bold text-lg text-left">Dhaka (DAC) — Cox&apos;s Bazar (CXB)</h3> */}
+                        <h3 className="font-bold text-lg text-left">{getCityNameByCode(searchParams.get("departure"))} ({searchParams.get("departure")}) — {getCityNameByCode(searchParams.get("arrival"))} ({searchParams.get("arrival")})</h3>
                         <p className="text-left flex gap-5 font-light">
-                            <span>Round Trip</span>
+                            <span>{searchParams.get("travelType")}</span>
                             <span>•</span>
-                            <span>02 Dec - 04 Dec</span>
+                            <span>{searchParams.get("startDate")} {searchParams.get("endDate") && ` -- ${searchParams.get("endDate")}`}</span>
                             <span>•</span>
-                            <span>2 Travelers</span>
+                            <span>{parseInt(searchParams.get("adults")) + parseInt(searchParams.get("children")) + parseInt(searchParams.get("infants"))} Traveler{(parseInt(searchParams.get("adults")) + parseInt(searchParams.get("children")) + parseInt(searchParams.get("infants"))) === 1 ? "" : "s"}</span>
                             <span>•</span>
-                            <span>Economy</span>
+                            <span>{searchParams.get("ticketClass")}</span>
                         </p>
                     </div>
                     <div className="lg:hidden flex items-center gap-5">
                         <MdOutlineKeyboardArrowLeft className="text-2xl cursor-pointer" />
                         <div>
-                            <h3 className="font-bold text-lg text-left flex items-center gap-1">DAC <FaArrowRight className="text-base" /> CXB <FaArrowRight className="text-base" /> DAC</h3>
-                            <p className="text-left flex gap-5 font-light">
-                                <span>02 Dec - 04 Dec</span>
+                            <h3 className="font-bold text-lg text-left flex items-center gap-1">{searchParams.get("departure")}
+                                <FaArrowRight className="text-base" /> {searchParams.get("arrival")}
+                                {searchParams.get("travelType") === "Round Trip" && (
+                                    <>
+                                        <FaArrowRight className="text-base" />
+                                        {searchParams.get("departure")}
+                                    </>
+                                )}</h3>
+                            <p className="text-left flex gap-5 font-light text-sm">
+                                <span>{searchParams.get("startDate")} {searchParams.get("endDate") && ` -- ${searchParams.get("endDate")}`}</span>
                                 <span>•</span>
-                                <span>2 Travelers</span>
+                                <span>{parseInt(searchParams.get("adults")) + parseInt(searchParams.get("children")) + parseInt(searchParams.get("infants"))} Traveler{(parseInt(searchParams.get("adults")) + parseInt(searchParams.get("children")) + parseInt(searchParams.get("infants"))) === 1 ? "" : "s"}</span>
                             </p>
                         </div>
                     </div>
                     <div className="btn btn-warning"><MdOutlineModeEdit /></div>
                 </div>
-            </div> */}
+            </div>
 
-            {/* <div className="mt-5 lg:w-[80%] mx-auto">
+            <div className="mt-5 lg:w-[80%] mx-auto">
                 <div className="flex justify-between items-center">
-                    <h3 className="font-bold text-lg text-left">114 Available Flights</h3>
+                    <h3 className="font-bold text-lg text-left">{searchResults.results.length} Available Flight{searchResults.results.length === 1 ? "" : "s"}</h3>
                     <p className="text-gray-400">*Price Includes VAT & Tax</p>
                 </div>
-                <ResultCard />
-                <ResultCard />
-            </div> */}
+                {searchResults.results.map((result, index) => (
+                    <ResultCard key={index} result={result} />
+                ))}
+            </div>
         </div>
     );
 };

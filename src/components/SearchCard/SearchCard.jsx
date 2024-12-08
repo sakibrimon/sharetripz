@@ -119,9 +119,11 @@ const SearchCard = () => {
             ...(travelType === "Round Trip" && {
                 endDate: flightDetails.endFlyDate.toISOString().split("T")[0],
             }),
+            travelType,
             adults: travelers.adults,
             children: travelers.children,
             infants: travelers.infants,
+            ticketClass,
         });
 
         navigate(`/flight-search?${queryParams.toString()}`);
