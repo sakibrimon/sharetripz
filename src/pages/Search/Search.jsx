@@ -12,7 +12,17 @@ const Search = () => {
 
     const searchParams = new URLSearchParams(location.search);
 
+    // Check for missing parameters
+    const requiredParams = ["departure", "arrival", "startDate", "travelType", "adults", "children", "infants", "ticketClass"];
+    const hasMissingParams = requiredParams.some(param => !searchParams.get(param));
+
     useEffect(() => {
+        // console.log("search paramssss", searchParams);
+        if (hasMissingParams) {
+            setIsLoading(false);
+            return; // Skip the API call if parameters are missing
+        }
+
         const requestData = {
             OriginDestinationOptions: [
                 {
@@ -67,7 +77,18 @@ const Search = () => {
     }, [location.search]);
 
     if (isLoading) {
-        return <p>Loading search results...</p>;
+        return (
+            <div className="text-center">
+                <p className="font-bold">Loading search results...</p>
+                <p>
+                    <span className="loading loading-bars loading-lg"></span>
+                </p>
+            </div>
+        );
+    }
+
+    if (hasMissingParams) {
+        return null; // Return nothing if required params are missing
     }
 
     return (
@@ -124,6 +145,11 @@ const Search = () => {
                 {searchResults.results.map((result, index) => (
                     <ResultCard key={index} result={result} />
                 ))}
+                {/* End of Results Divider */}
+                <div className="text-center my-10">
+                    <hr className="border-gray-300 mb-4" />
+                    <p className="text-gray-500">End of Results</p>
+                </div>
             </div>
         </div>
     );
