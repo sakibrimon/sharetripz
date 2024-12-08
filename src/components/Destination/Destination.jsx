@@ -9,7 +9,7 @@ const Destination = ({ defDestination, airports, setFlightDetails }) => {
     );
 };
 
-Destination.propTypes ={
+Destination.propTypes = {
     defDestination: PropTypes.string.isRequired,
     airports: PropTypes.array.isRequired,
     setFlightDetails: PropTypes.func.isRequired,

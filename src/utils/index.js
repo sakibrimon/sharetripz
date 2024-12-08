@@ -21,19 +21,33 @@ export function formatBDT(amount) {
 export function getCityNameByCode(code) {
     // Step 1: Retrieve the data from localStorage
     const storedData = localStorage.getItem("airports");
-    
+
     // Step 2: Parse the JSON string back into an array
     const airports = JSON.parse(storedData);
-    
+
     // Step 3: Find the object with the matching code
     const airport = airports.find(airport => airport.code === code);
-    
+
     // Step 4: Return the cityName if found, or a default message
     // return airport ? airport.cityName : "Code not found";
     return airport.cityName;
-  }
-  
-  // Example usage:
-  const cityName = getCityNameByCode("ANW");
-  console.log(cityName); // Outputs: "Ainsworth"
-  
+}
+
+// Example usage:
+// const cityName = getCityNameByCode("ANW");
+// console.log(cityName); // Outputs: "Ainsworth"
+
+export function getHalf(route, part) {
+    const [firstHalf, secondHalf] = route.split("-");
+    if (part === "first") {
+        return firstHalf;
+    } else if (part === "second") {
+        return secondHalf;
+    } else {
+        throw new Error("Invalid part specified. Use 'first' or 'second'.");
+    }
+}
+
+// Usage Examples
+// console.log(getHalf("DAC-CXB", "first"));  // Outputs: "DAC"
+// console.log(getHalf("DAC-CXB", "second")); // Outputs: "CXB"
