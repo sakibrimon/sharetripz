@@ -1,7 +1,7 @@
 import { HiTicket } from "react-icons/hi";
 import { formatBDT, getCityNameByCode, getHalf } from "../../utils";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import { GiCommercialAirplane } from "react-icons/gi";
+// import { GiCommercialAirplane } from "react-icons/gi";
 import PropTypes from "prop-types";
 
 const ResultCard = ({ result }) => {
@@ -107,7 +107,8 @@ const ResultCard = ({ result }) => {
                             <div className="flex flex-col items-center">
                                 {/* <p className="font-bold">1hr 5min</p> */}
                                 <p className="font-bold">{result.flights[0].totalElapsedTime}</p>
-                                <p className="text-blue-400"><GiCommercialAirplane /></p>
+                                {/* <p className="text-blue-400"><GiCommercialAirplane /></p> */}
+                                <p>{result.validatingCarrier}</p>
                                 <p className="font-light">Non-Stop</p>
                             </div>
                             <div className="text-right">
@@ -132,7 +133,8 @@ const ResultCard = ({ result }) => {
                                 <div className="flex flex-col items-center">
                                     {/* <p className="font-bold">1hr 5min</p> */}
                                     <p className="font-bold">{result.flights[1].totalElapsedTime}</p>
-                                    <p className="text-blue-400"><GiCommercialAirplane /></p>
+                                    {/* <p className="text-blue-400"><GiCommercialAirplane /></p> */}
+                                    <p>{result.validatingCarrier}</p>
                                     <p className="font-light">Non-Stop</p>
                                 </div>
                                 <div className="text-right">
