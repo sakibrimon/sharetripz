@@ -132,9 +132,11 @@ const SearchCard = () => {
     // Show a loading spinner or message while fetching
     if (isLoading) {
         return (
-            <div>
-                <p className="text-white font-bold text-center lg:text-left">Loading airports...</p>
-                <span className="loading loading-bars loading-lg"></span>
+            <div className="text-center lg:text-left">
+                <p className="text-white font-bold">Loading airports...</p>
+                <p>
+                    <span className="loading loading-bars loading-lg"></span>
+                </p>
             </div>
         );
     }
