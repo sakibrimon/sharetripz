@@ -130,7 +130,7 @@ const ResultCard = ({ result }) => {
                                     {/* <p className="font-light">4 Dec, Wed</p> */}
                                     <p className="font-light">{result.flights[1].flyDate}</p>
                                 </div>
-                                <div className="flex flex-col items-center">
+                                <div className="flex flex-col items-center text-center">
                                     {/* <p className="font-bold">1hr 5min</p> */}
                                     <p className="font-bold">{result.flights[1].totalElapsedTime}</p>
                                     {/* <p className="text-blue-400"><GiCommercialAirplane /></p> */}
