@@ -17,7 +17,7 @@ const Search = () => {
     const hasMissingParams = requiredParams.some(param => !searchParams.get(param));
 
     useEffect(() => {
-        // console.log("search paramssss", searchParams);
+        // console.log("search paramsssss", searchParams);
         if (hasMissingParams) {
             setIsLoading(false);
             return; // Skip the API call if parameters are missing
