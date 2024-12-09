@@ -19,10 +19,26 @@ const SearchCard = () => {
             return;
         }
 
-        fetch('https://proxy.cors.sh/https://ota-api.a4aero.com/api/settings/airports', {
+        // fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://ota-api.a4aero.com/api/settings/airports')}`)
+        // fetch('https://proxy.cors.sh/https://ota-api.a4aero.com/api/settings/airports', {
+        //     headers: {
+        //         'x-cors-api-key': 'temp_e8a001540d0e7452d257d647f5adc0ca',
+        //     },
+        // })
+        // fetch('https://corsproxy.io/?key=9c3881e4&?url=https://ota-api.a4aero.com/api/settings/airports')
+        fetch("https://cors-anywhere.herokuapp.com/https://ota-api.a4aero.com/api/settings/airports", {
+            method: "GET", // or POST, depending on your needs
             headers: {
-                'x-cors-api-key': 'temp_e8a001540d0e7452d257d647f5adc0ca',
+                // 'x-cors-api-key': 'temp_e8a001540d0e7452d257d647f5adc0ca',
+                "Content-Type": "application/json",
+                // Add any additional headers here
+                // "Origin": "https://your-frontend-domain.com", // Replace with your domain or a placeholder
+                "X-Requested-With": "XMLHttpRequest", // Commonly used header for AJAX requests
             },
+            // body: JSON.stringify({
+            //     // Your POST request body here
+            //     // key: "value", // Replace with your actual payload
+            // }),
         })
             .then((response) => {
                 if (response.ok) return response.json();
@@ -31,6 +47,10 @@ const SearchCard = () => {
             .then((data) => {
                 setAirports(data.data); // Set fetched airports
                 localStorage.setItem('airports', JSON.stringify(data.data)); // Store airports in localStorage
+                // const obj = JSON.parse(data.contents);
+                // console.log("objjjjj", obj);
+                // setAirports(obj.data); // Set fetched airports
+                // localStorage.setItem('airports', JSON.stringify(obj.data)); // Store airports in localStorage
                 console.log("all the airports (0):", airports);
                 setIsLoading(false); // Mark loading as complete
             })

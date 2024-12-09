@@ -50,12 +50,16 @@ const Search = () => {
 
         const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjA5NDc3NzM1LWFhZWMtNGVmZS04ZjhjLTQxYzc0YTlkNDQxNiIsInVuaXF1ZV9uYW1lIjoiQVBQIiwiZW1haWwiOiJtYWlsLnBhcnZlemFsYW1AZ21haWwuY29tIiwianRpIjoiNGE0MTk0YzktZGVlYy00OWUwLTkzNWUtM2I0YzA4ZjdkNjRkIiwiVXNlcklkIjoiMSIsIkFwcElkIjoiMiIsIlJvbGVJZHMiOiJBcHAiLCJOYW1lIjoiQXBwIiwiR3NhSWQiOiIxMDEiLCJBZ2VudElkIjoiMTAwMyIsIkdzYSI6IiIsIkFnZW50IjoiIiwiZXhwIjoxNzY0ODM5NDE0LCJpc3MiOiJBNEEgT1RBIEFQUCIsImF1ZCI6IkFwcFVJIn0.kkX48bjL6VWMRR7LclnU3KDDgFfoumIWS0yN7FO95B4";
 
-        fetch("https://proxy.cors.sh/https://ota-api.a4aero.com/api/flights/search", {
+        // fetch(`https://api.allorigins.win/post?url=${encodeURIComponent('https://ota-api.a4aero.com/api/flights/search')}`, {
+        // fetch("https://proxy.cors.sh/https://ota-api.a4aero.com/api/flights/search", {
+        // fetch("https://corsproxy.io/?key=9c3881e4&?url=https://ota-api.a4aero.com/api/flights/search", {
+        fetch("https://cors-anywhere.herokuapp.com/https://ota-api.a4aero.com/api/flights/search", {
             method: "POST",
             headers: {
-                'x-cors-api-key': 'temp_e8a001540d0e7452d257d647f5adc0ca',
+                // 'x-cors-api-key': 'temp_e8a001540d0e7452d257d647f5adc0ca',
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
+                "X-Requested-With": "XMLHttpRequest",
             },
             body: JSON.stringify(requestData),
         })
@@ -67,14 +71,18 @@ const Search = () => {
             })
             .then((data) => {
                 setSearchResults(data);
+                // const obj = JSON.parse(data);
+                // console.log("objjjjjjjjjj", obj);
+                // setSearchResults(obj.contents);
                 setIsLoading(false);
                 console.log("search resultsssss", data);
+                // console.log("search resultsssss", obj.contents);
             })
             .catch((err) => {
                 console.error("Error fetching flight data:", err);
                 setIsLoading(false);
             });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location.search]);
 
     if (isLoading) {
