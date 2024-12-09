@@ -74,6 +74,7 @@ const Search = () => {
                 console.error("Error fetching flight data:", err);
                 setIsLoading(false);
             });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location.search]);
 
     if (isLoading) {
