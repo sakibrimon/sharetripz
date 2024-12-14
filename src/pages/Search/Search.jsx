@@ -45,7 +45,7 @@ const Search = () => {
                 { PassengerType: "CHD", Quantity: parseInt(searchParams.get("children"), 10) || 0 },
                 { PassengerType: "INF", Quantity: parseInt(searchParams.get("infants"), 10) || 0 },
             ],
-            ApiId: 1003,
+            ApiId: 1002,
         };
 
         const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjA5NDc3NzM1LWFhZWMtNGVmZS04ZjhjLTQxYzc0YTlkNDQxNiIsInVuaXF1ZV9uYW1lIjoiQVBQIiwiZW1haWwiOiJtYWlsLnBhcnZlemFsYW1AZ21haWwuY29tIiwianRpIjoiNGE0MTk0YzktZGVlYy00OWUwLTkzNWUtM2I0YzA4ZjdkNjRkIiwiVXNlcklkIjoiMSIsIkFwcElkIjoiMiIsIlJvbGVJZHMiOiJBcHAiLCJOYW1lIjoiQXBwIiwiR3NhSWQiOiIxMDEiLCJBZ2VudElkIjoiMTAwMyIsIkdzYSI6IiIsIkFnZW50IjoiIiwiZXhwIjoxNzY0ODM5NDE0LCJpc3MiOiJBNEEgT1RBIEFQUCIsImF1ZCI6IkFwcFVJIn0.kkX48bjL6VWMRR7LclnU3KDDgFfoumIWS0yN7FO95B4";
