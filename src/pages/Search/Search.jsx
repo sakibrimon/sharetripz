@@ -3,7 +3,7 @@ import ResultCard from "../../components/ResultCard/ResultCard";
 import { FaArrowRight } from "react-icons/fa6";
 import { useLocation } from "react-router";
 import { useEffect, useState } from "react";
-import { getCityNameByCode } from "../../utils";
+import { formatDate, getCityNameByCode } from "../../utils";
 
 const Search = () => {
     const location = useLocation();
@@ -117,7 +117,11 @@ const Search = () => {
                         <p className="text-left flex gap-5 font-light">
                             <span>{searchParams.get("travelType")}</span>
                             <span>•</span>
-                            <span>{searchParams.get("startDate")} {searchParams.get("endDate") && ` -- ${searchParams.get("endDate")}`}</span>
+                            {/* <span>{searchParams.get("startDate")} {searchParams.get("endDate") && ` -- ${searchParams.get("endDate")}`}</span> */}
+                            <span>
+                                {formatDate(searchParams.get("startDate"))}
+                                {searchParams.get("endDate") && ` - ${formatDate(searchParams.get("endDate"))}`}
+                            </span>
                             <span>•</span>
                             <span>{parseInt(searchParams.get("adults")) + parseInt(searchParams.get("children")) + parseInt(searchParams.get("infants"))} Traveler{(parseInt(searchParams.get("adults")) + parseInt(searchParams.get("children")) + parseInt(searchParams.get("infants"))) === 1 ? "" : "s"}</span>
                             <span>•</span>
@@ -136,7 +140,11 @@ const Search = () => {
                                     </>
                                 )}</h3>
                             <p className="text-left flex gap-5 font-light text-sm">
-                                <span>{searchParams.get("startDate")} {searchParams.get("endDate") && ` -- ${searchParams.get("endDate")}`}</span>
+                                {/* <span>{searchParams.get("startDate")} {searchParams.get("endDate") && ` -- ${searchParams.get("endDate")}`}</span> */}
+                                <span>
+                                    {formatDate(searchParams.get("startDate"))}
+                                    {searchParams.get("endDate") && ` - ${formatDate(searchParams.get("endDate"))}`}
+                                </span>
                                 <span>•</span>
                                 <span>{parseInt(searchParams.get("adults")) + parseInt(searchParams.get("children")) + parseInt(searchParams.get("infants"))} Traveler{(parseInt(searchParams.get("adults")) + parseInt(searchParams.get("children")) + parseInt(searchParams.get("infants"))) === 1 ? "" : "s"}</span>
                             </p>
