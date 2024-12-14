@@ -32,7 +32,7 @@ export function getCityNameByCode(code) {
 
 export function formatDate(dateString) {
     if (!dateString) return ""; // Handle null or undefined dates
-    
+
     // Create a Date object from the input string
     const date = new Date(dateString);
 
@@ -68,7 +68,7 @@ export function convertTo12HourFormat(time24) {
 
 export function formatBDT(amount) {
     return `৳${amount.toLocaleString('en-BD', {
-        // minimumFractionDigits: 2, // Ensures two decimal places
+        minimumFractionDigits: 2, // Ensures two decimal places
         maximumFractionDigits: 2, // Ensures two decimal places
     })}`;
 }
