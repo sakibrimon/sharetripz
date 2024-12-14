@@ -12,7 +12,7 @@ const ResultCard = ({ result }) => {
             <div className="mt-5 mx-2 rounded-lg card# bg-base-100 w-96# shadow-xl hidden lg:block">
                 <div className="p-8 card-body# flex justify-between items-center">
                     <div className="space-y-5 w-[80%]">
-                        <div className="flex justify-between items-start">
+                        <div className="flex# justify-between# items-start# grid grid-cols-5 gap-4">
                             <div className="self-center">
                                 <img className="w-9 h-9" src={`https://airlines.a4aero.com/images/${result.flights[0].flightSegments[0].airline.code}.png`} alt="airlines-logo" />
                             </div>
@@ -54,7 +54,7 @@ const ResultCard = ({ result }) => {
                         {
                             result.flights.length > 1 &&
                             (
-                                <div className="flex justify-between items-start">
+                                <div className="flex# justify-between# items-start# grid grid-cols-5 gap-4">
                                     <div className="self-center">
                                         <img className="w-9 h-9" src={`https://airlines.a4aero.com/images/${result.flights[1].flightSegments[0].airline.code}.png`} alt="airlines-logo" />
                                     </div>
@@ -113,9 +113,9 @@ const ResultCard = ({ result }) => {
 
             {/* for smaller screens */}
             <div className="mt-5 mx-2 rounded-lg card# bg-base-100 w-96# shadow-xl lg:hidden">
-                <div className="p-8 flex justify-between">
+                <div className="p-8">
                     <div className="space-y-5 w-full">
-                        <div className="flex justify-between items-start">
+                        <div className="flex# justify-between# items-start# grid grid-cols-3 gap-2">
                             <div>
                                 {/* <p className="font-bold">8:00 PM</p> */}
                                 {/* <p className="font-bold">HH:MM AM/PM</p> */}
@@ -147,39 +147,43 @@ const ResultCard = ({ result }) => {
                                 <p className="font-light">{result.flights[0].flightSegments[0].arrival.arrDate}</p>
                             </div>
                         </div>
-                        {result.flights.length > 1 &&
-                            (<div className="flex justify-between items-start">
-                                <div>
-                                    {/* <p className="font-bold">9:35 PM</p> */}
-                                    {/* <p className="font-bold">HH:MM AM/PM</p> */}
-                                    <p className="font-bold">{convertTo12HourFormat(result.flights[1].flightSegments[0].departure.depTime)}</p>
-                                    {/* <p>Cox&apos;s Bazar</p> */}
-                                    <p>{result.flights[1].flightSegments[0].departure.airport.cityName}</p>
-                                    {/* <p className="font-light">4 Dec, Wed</p> */}
-                                    {/* <p className="font-light">{result.flights[1].flyDate}</p> */}
-                                    <p className="font-light">{result.flights[1].flightSegments[0].departure.depDate}</p>
+                        {
+                            result.flights.length > 1 &&
+                            (
+                                <div className="flex# justify-between# items-start# grid grid-cols-3 gap-2">
+                                    <div>
+                                        {/* <p className="font-bold">9:35 PM</p> */}
+                                        {/* <p className="font-bold">HH:MM AM/PM</p> */}
+                                        <p className="font-bold">{convertTo12HourFormat(result.flights[1].flightSegments[0].departure.depTime)}</p>
+                                        {/* <p>Cox&apos;s Bazar</p> */}
+                                        <p>{result.flights[1].flightSegments[0].departure.airport.cityName}</p>
+                                        {/* <p className="font-light">4 Dec, Wed</p> */}
+                                        {/* <p className="font-light">{result.flights[1].flyDate}</p> */}
+                                        <p className="font-light">{result.flights[1].flightSegments[0].departure.depDate}</p>
+                                    </div>
+                                    <div className="flex flex-col items-center text-center">
+                                        {/* <p className="font-bold">1hr 5min</p> */}
+                                        <p className="font-bold">{result.flights[1].flightSegments[0].elapsedTime}</p>
+                                        {/* <p className="text-blue-400"><GiCommercialAirplane /></p> */}
+                                        {/* <p>{result.validatingCarrier}</p> */}
+                                        {/* <p>{result.flights[1].flightSegments[0].airline.name.slice(0, 16)}...</p> */}
+                                        {/* <p>{result.flights[1].flightSegments[0].airline.code}</p> */}
+                                        <img className="w-[18px] h-[18px]" src={`https://airlines.a4aero.com/images/${result.flights[1].flightSegments[0].airline.code}.png`} alt="airlines-logo" />
+                                        <p className="font-light">Non-Stop</p>
+                                    </div>
+                                    <div className="text-right">
+                                        {/* <p className="font-bold">10:40 PM</p> */}
+                                        {/* <p className="font-bold">HH:MM AM/PM</p> */}
+                                        <p className="font-bold">{convertTo12HourFormat(result.flights[1].flightSegments[0].arrival.arrTime)}</p>
+                                        {/* <p>Dhaka</p> */}
+                                        <p>{result.flights[1].flightSegments[0].arrival.airport.cityName}</p>
+                                        {/* <p className="font-light">4 Dec, Wed</p> */}
+                                        {/* <p className="font-light">YYYY-MM-DD</p> */}
+                                        <p className="font-light">{result.flights[1].flightSegments[0].arrival.arrDate}</p>
+                                    </div>
                                 </div>
-                                <div className="flex flex-col items-center text-center">
-                                    {/* <p className="font-bold">1hr 5min</p> */}
-                                    <p className="font-bold">{result.flights[1].flightSegments[0].elapsedTime}</p>
-                                    {/* <p className="text-blue-400"><GiCommercialAirplane /></p> */}
-                                    {/* <p>{result.validatingCarrier}</p> */}
-                                    {/* <p>{result.flights[1].flightSegments[0].airline.name.slice(0, 16)}...</p> */}
-                                    {/* <p>{result.flights[1].flightSegments[0].airline.code}</p> */}
-                                    <img className="w-[18px] h-[18px]" src={`https://airlines.a4aero.com/images/${result.flights[1].flightSegments[0].airline.code}.png`} alt="airlines-logo" />
-                                    <p className="font-light">Non-Stop</p>
-                                </div>
-                                <div className="text-right">
-                                    {/* <p className="font-bold">10:40 PM</p> */}
-                                    {/* <p className="font-bold">HH:MM AM/PM</p> */}
-                                    <p className="font-bold">{convertTo12HourFormat(result.flights[1].flightSegments[0].arrival.arrTime)}</p>
-                                    {/* <p>Dhaka</p> */}
-                                    <p>{result.flights[1].flightSegments[0].arrival.airport.cityName}</p>
-                                    {/* <p className="font-light">4 Dec, Wed</p> */}
-                                    {/* <p className="font-light">YYYY-MM-DD</p> */}
-                                    <p className="font-light">{result.flights[1].flightSegments[0].arrival.arrDate}</p>
-                                </div>
-                            </div>)}
+                            )
+                        }
                     </div>
                 </div>
                 <div className="py-2 px-8 bg-base-200 flex justify-between items-center">
