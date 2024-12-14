@@ -13,6 +13,9 @@ const ResultCard = ({ result }) => {
                 <div className="p-8 card-body# flex justify-between items-center">
                     <div className="space-y-5 w-[80%]">
                         <div className="flex justify-between items-start">
+                            {/* <div>
+                                <img src={`https://airlines.a4aero.com/images/{bg}.png`} />
+                            </div> */}
                             <div>
                                 {/* <p className="font-bold">DAC - CXB</p> */}
                                 <p className="font-bold">{result.flights[0].flightInfoId}</p>
@@ -23,17 +26,21 @@ const ResultCard = ({ result }) => {
                             </div>
                             <div>
                                 {/* <p className="font-bold">8:00 PM</p> */}
-                                <p className="font-bold">HH:MM AM/PM</p>
+                                {/* <p className="font-bold">HH:MM AM/PM</p> */}
+                                <p className="font-bold">{result.flights[0].flightSegments[0].departure.depTime}</p>
                                 {/* <p>2 Dec, Mon</p> */}
-                                <p>{result.flights[0].flyDate}</p>
+                                {/* <p>{result.flights[0].flyDate}</p> */}
+                                <p>{result.flights[0].flightSegments[0].departure.depDate}</p>
                                 {/* <p className="font-light">Hazrat Shahjalal...</p> */}
                                 <p className="font-light">{getHalf(result.flights[0].flightInfoId, "first")}</p>
                             </div>
                             <div>
                                 {/* <p className="font-bold">9:05 PM</p> */}
-                                <p className="font-bold">HH:MM AM/PM</p>
+                                {/* <p className="font-bold">HH:MM AM/PM</p> */}
+                                <p className="font-bold">{result.flights[0].flightSegments[0].arrival.arrTime}</p>
                                 {/* <p>2 Dec, Mon</p> */}
-                                <p>YYYY-MM-DD</p>
+                                {/* <p>YYYY-MM-DD</p> */}
+                                <p>{result.flights[0].flightSegments[0].arrival.arrDate}</p>
                                 {/* <p className="font-light">Cox&apos;s Bazar Airp...</p> */}
                                 <p className="font-light">{getHalf(result.flights[0].flightInfoId, "second")}</p>
                             </div>
@@ -45,6 +52,9 @@ const ResultCard = ({ result }) => {
                         </div>
                         {result.flights.length > 1 &&
                             (<div className="flex justify-between items-start">
+                                {/* <div>
+
+                                </div> */}
                                 <div>
                                     {/* <p className="font-bold">DAC - CXB</p> */}
                                     <p className="font-bold">{result.flights[1].flightInfoId}</p>
@@ -55,17 +65,21 @@ const ResultCard = ({ result }) => {
                                 </div>
                                 <div>
                                     {/* <p className="font-bold">9:35 PM</p> */}
-                                    <p className="font-bold">HH:MM AM/PM</p>
+                                    {/* <p className="font-bold">HH:MM AM/PM</p> */}
+                                    <p className="font-bold">{result.flights[1].flightSegments[0].departure.depTime}</p>
                                     {/* <p>4 Dec, Wed</p> */}
-                                    <p>{result.flights[1].flyDate}</p>
+                                    {/* <p>{result.flights[1].flyDate}</p> */}
+                                    <p>{result.flights[1].flightSegments[0].departure.depDate}</p>
                                     {/* <p className="font-light">Cox&apos;s Bazar Airp...</p> */}
                                     <p className="font-light">{getHalf(result.flights[1].flightInfoId, "first")}</p>
                                 </div>
                                 <div>
                                     {/* <p className="font-bold">10:40 PM</p> */}
-                                    <p className="font-bold">HH:MM AM/PM</p>
+                                    {/* <p className="font-bold">HH:MM AM/PM</p> */}
+                                    <p className="font-bold">{result.flights[1].flightSegments[0].arrival.arrTime}</p>
                                     {/* <p>4 Dec, Wed</p> */}
-                                    <p>YYYY-MM-DD</p>
+                                    {/* <p>YYYY-MM-DD</p> */}
+                                    <p>{result.flights[1].flightSegments[0].arrival.arrDate}</p>
                                     {/* <p className="font-light">Hazrat Shahjalal...</p> */}
                                     <p className="font-light">{getHalf(result.flights[1].flightInfoId, "second")}</p>
                                 </div>
@@ -98,11 +112,13 @@ const ResultCard = ({ result }) => {
                         <div className="flex justify-between items-start">
                             <div>
                                 {/* <p className="font-bold">8:00 PM</p> */}
-                                <p className="font-bold">HH:MM AM/PM</p>
+                                {/* <p className="font-bold">HH:MM AM/PM</p> */}
+                                <p className="font-bold">{result.flights[0].flightSegments[0].departure.depTime}</p>
                                 {/* <p>Dhaka</p> */}
                                 <p>{getCityNameByCode(getHalf(result.flights[0].flightInfoId, "first"))}</p>
                                 {/* <p className="font-light">2 Dec, Mon</p> */}
-                                <p className="font-light">{result.flights[0].flyDate}</p>
+                                {/* <p className="font-light">{result.flights[0].flyDate}</p> */}
+                                <p className="font-light">{result.flights[0].flightSegments[0].departure.depDate}</p>
                             </div>
                             <div className="flex flex-col items-center text-center">
                                 {/* <p className="font-bold">1hr 5min</p> */}
@@ -113,22 +129,26 @@ const ResultCard = ({ result }) => {
                             </div>
                             <div className="text-right">
                                 {/* <p className="font-bold">9:05 PM</p> */}
-                                <p className="font-bold">HH:MM AM/PM</p>
+                                {/* <p className="font-bold">HH:MM AM/PM</p> */}
+                                <p className="font-bold">{result.flights[0].flightSegments[0].arrival.arrTime}</p>
                                 {/* <p>Cox&apos;s Bazar</p> */}
                                 <p>{getCityNameByCode(getHalf(result.flights[0].flightInfoId, "second"))}</p>
                                 {/* <p className="font-light">2 Dec, Mon</p> */}
-                                <p className="font-light">YYYY-MM-DD</p>
+                                {/* <p className="font-light">YYYY-MM-DD</p> */}
+                                <p className="font-light">{result.flights[0].flightSegments[0].arrival.arrDate}</p>
                             </div>
                         </div>
                         {result.flights.length > 1 &&
                             (<div className="flex justify-between items-start">
                                 <div>
                                     {/* <p className="font-bold">9:35 PM</p> */}
-                                    <p className="font-bold">HH:MM AM/PM</p>
+                                    {/* <p className="font-bold">HH:MM AM/PM</p> */}
+                                    <p className="font-bold">{result.flights[1].flightSegments[0].departure.depTime}</p>
                                     {/* <p>Cox&apos;s Bazar</p> */}
                                     <p>{getCityNameByCode(getHalf(result.flights[1].flightInfoId, "first"))}</p>
                                     {/* <p className="font-light">4 Dec, Wed</p> */}
-                                    <p className="font-light">{result.flights[1].flyDate}</p>
+                                    {/* <p className="font-light">{result.flights[1].flyDate}</p> */}
+                                    <p className="font-light">{result.flights[1].flightSegments[0].departure.depDate}</p>
                                 </div>
                                 <div className="flex flex-col items-center text-center">
                                     {/* <p className="font-bold">1hr 5min</p> */}
@@ -139,11 +159,13 @@ const ResultCard = ({ result }) => {
                                 </div>
                                 <div className="text-right">
                                     {/* <p className="font-bold">10:40 PM</p> */}
-                                    <p className="font-bold">HH:MM AM/PM</p>
+                                    {/* <p className="font-bold">HH:MM AM/PM</p> */}
+                                    <p className="font-bold">{result.flights[1].flightSegments[0].arrival.arrTime}</p>
                                     {/* <p>Dhaka</p> */}
                                     <p>{getCityNameByCode(getHalf(result.flights[1].flightInfoId, "second"))}</p>
                                     {/* <p className="font-light">4 Dec, Wed</p> */}
-                                    <p className="font-light">YYYY-MM-DD</p>
+                                    {/* <p className="font-light">YYYY-MM-DD</p> */}
+                                    <p className="font-light">{result.flights[1].flightSegments[0].arrival.arrDate}</p>
                                 </div>
                             </div>)}
                     </div>
