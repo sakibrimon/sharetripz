@@ -43,6 +43,8 @@ const Flights = ({ travelType, defOrigin0, defDestination0, defStartDate0, defOr
                     defOrigin={defOrigin}
                     defDestination={defDestination}
                     defStartDate={addDays(lastFlight.props.defStartDate, 3)}
+                    airports={airports}
+                    setFlightDetails={setFlightDetails}
                 />
             );
 
@@ -88,9 +90,14 @@ const Flights = ({ travelType, defOrigin0, defDestination0, defStartDate0, defOr
             ))}
 
             <div
-                className="mt-5 btn btn-outline btn-info lg:btn-ghost inline-flex gap-2 items-center disabled:opacity-50 disabled:cursor-not-allowed"
-                onClick={handleAddFlights}
+                className={`mt-5 btn btn-outline btn-info lg:btn-ghost inline-flex gap-2 items-center ${flights.length >= 5 ? "disabled:opacity-50 disabled:cursor-not-allowed" : ""
+                    }`}
+                onClick={(e) => {
+                    e.preventDefault(); // Prevent form submission
+                    if (flights.length < 5) handleAddFlights();
+                }}
                 disabled={flights.length >= 5} // Disable if flights are already 5
+                type="button" // Ensure this is a non-submit button
             >
                 <FaPlus />
                 <span>Add more flights</span>
@@ -107,7 +114,6 @@ Flights.propTypes = {
     defOrigin1: PropTypes.string.isRequired,
     defDestination1: PropTypes.string.isRequired,
     defStartDate1: PropTypes.instanceOf(Date).isRequired,
-    defEndDate1: PropTypes.instanceOf(Date).isRequired,
     airports: PropTypes.array.isRequired,
     setFlightDetails: PropTypes.func.isRequired,
 }

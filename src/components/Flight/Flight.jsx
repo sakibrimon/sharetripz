@@ -22,7 +22,7 @@ const Flight = ({ travelType, defOrigin, defDestination, defStartDate, defEndDat
             ...prevDetails,
             departureAirport: prevDetails.arrivalAirport,
             arrivalAirport: prevDetails.departureAirport,
-          }));
+        }));
     };
 
     return (
@@ -47,7 +47,7 @@ Flight.propTypes = {
     defOrigin: PropTypes.string.isRequired,
     defDestination: PropTypes.string.isRequired,
     defStartDate: PropTypes.instanceOf(Date).isRequired,
-    defEndDate: PropTypes.instanceOf(Date).isRequired,
+    defEndDate: PropTypes.instanceOf(Date),
     airports: PropTypes.array.isRequired,
     setFlightDetails: PropTypes.func.isRequired,
 }
